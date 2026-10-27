@@ -1,0 +1,48 @@
+# ==============================================================================
+# Global AI Agent Configurator - .gitignore
+# ==============================================================================
+
+# CRITICAL: Local junction to %USERPROFILE%\.agents (Do NOT commit the linked tree!)
+.agents
+.agents/
+*/.agents/
+
+# Session state and local AI checkpoints
+session-state.md
+*.session.json
+
+# Environment variables, local tokens and secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.token
+*secrets*
+*credentials*
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+/temp/
+/tmp/
+
+# Windows OS metadata
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# IDE / Editor specific
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
