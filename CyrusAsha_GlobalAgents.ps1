@@ -1,7 +1,7 @@
 # ==============================================================================
 # Global AI Agent Configurator for Windows
 # File: CyrusAsha_GlobalAgents.ps1
-# Version: 1.0.0 (Consolidated Multi-Agent Edition)
+# Version: 1.1.0 (Enterprise Multi-Agent & Resilience Edition)
 # Central Directory: %USERPROFILE%\.agents
 #
 # Creator / سازنده:
@@ -13,18 +13,21 @@
 #   2. Collects resources from all installed AI agents into central .agents folder
 #   3. Links central .agents into known AI agent home directories (Freebuff, Codebuff,
 #      Codex, Claude Code, Gemini, Cursor, Copilot, Windsurf, Cline, Roo, Continue,
-#      Trae, Junie, Amazon Q, OpenCode, Hermes, Antigravity, etc.)
+#      Trae, Junie, Amazon Q, OpenCode, Hermes, Antigravity, Free-Pi CLI, etc.)
 #   4. Installs a global PowerShell command:
 #        Initialize-AgentWorkspace  (aliases: agents-init, ai-init, init-agents,
 #                                    init-needed-files, Init-NeededFiles)
-#   5. Updates project-level instruction files using a NON-DESTRUCTIVE managed block
-#   6. All slash commands use CyrusAsha_ prefix (e.g., /CyrusAsha_Auto)
+#   5. Automatically validates and repairs broken or dangling junctions across drives
+#      even after clean Windows reinstalls
+#   6. Updates project-level instruction files using a NON-DESTRUCTIVE managed block,
+#      ensuring knowledge.md is continuously checked and synchronized across all agents
+#   7. All slash commands use CyrusAsha_ prefix (e.g., /CyrusAsha_Auto)
 #
-# Run ONCE as Administrator (first run). Re-running is always safe.
+# Run ONCE as Administrator (first run). Re-running is always safe and idempotent.
 # ==============================================================================
 
 $ErrorActionPreference = "Continue"
-$script:Version = "1.0.0"
+$script:Version = "1.1.0"
 $script:StartMarker = "<!-- GLOBAL-AI-AGENTS:START -->"
 $script:EndMarker   = "<!-- GLOBAL-AI-AGENTS:END -->"
 
@@ -89,7 +92,35 @@ function Set-DirectoryJunction {
     if ($parent -and -not (Test-Path -LiteralPath $parent)) {
         New-Item -ItemType Directory -Force -Path $parent | Out-Null
     }
-    if (Test-Path -LiteralPath $LinkPath) { return } # never replace an existing folder
+
+    $existingItem = Get-Item -LiteralPath $LinkPath -Force -ErrorAction SilentlyContinue
+    if ($null -ne $existingItem) {
+        $isReparse = [bool]($existingItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint)
+        if ($isReparse) {
+            $currentTarget = $existingItem.Target
+            if ($currentTarget -is [array]) { $currentTarget = $currentTarget[0] }
+
+            $targetAccessible = $false
+            try { $targetAccessible = Test-Path -LiteralPath $LinkPath -ErrorAction Stop } catch { $targetAccessible = $false }
+
+            if (($currentTarget -eq $Target) -and $targetAccessible) {
+                return # Junction is healthy and matches target
+            }
+
+            # Stale or broken junction detected (e.g. following Windows OS reinstall)
+            Write-Host ("  [REPAIR] Removing stale junction: " + $LinkPath + " (Target: " + $currentTarget + ")") -ForegroundColor DarkYellow
+            cmd /c rmdir "`"$LinkPath`"" > $null 2>&1
+        } else {
+            # Regular directory: if empty, replace with junction; if not empty, preserve user files
+            $subItems = Get-ChildItem -LiteralPath $LinkPath -Force -ErrorAction SilentlyContinue
+            if ($null -eq $subItems -or $subItems.Count -eq 0) {
+                Remove-Item -LiteralPath $LinkPath -Force -Recurse -ErrorAction SilentlyContinue
+            } else {
+                return # Preserve non-empty regular user folders
+            }
+        }
+    }
+
     try {
         New-Item -ItemType Junction -Path $LinkPath -Target $Target -ErrorAction Stop | Out-Null
     } catch {
@@ -155,6 +186,7 @@ Before planning, coding, refactoring, UI/UX, SEO, or security work, silently:
 5. Use MCP servers from `.agents/mcp.json`
 6. Honor slash-command playbooks in `.agents/commands/`:
    `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact`
+7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).
 
 If `.agents/` is missing, run inside the project root:
 
@@ -175,13 +207,14 @@ Set-Content -Path $AutoRuleFile -Encoding UTF8 -Value @(
     '',
     '## 1. Automatic Context & Skill Routing (Pre-Response Phase):',
     'Before executing any complex coding, architecture, UI/UX, SEO, or security task, silently perform the following:',
+    '- **Project Knowledge Synchronization**: Read `knowledge.md` (and `AGENTS.md`) in the project root to absorb stack guidelines, architectural decisions, and domain rules.',
     '- **Skill Matching**: Check `~/.agents/skills/` (or `.agents/skills/`) for relevant `SKILL.md` playbooks.',
     '- **Persona Adoption**: Check `~/.agents/agents/` and adopt the mindset of the most relevant specialist sub-agent.',
     '- **Rule Enforcement**: Always comply with active architectural and security constraints in `~/.agents/rules/`.',
     '- **MCP Utilization**: Proactively use configured MCP tools in `mcp.json` whenever external data or file manipulation is needed.',
     '',
     '## 2. Context Window Management:',
-    '- Monitor conversation length. If context exceeds 75% capacity or a major milestone completes, automatically follow the `/CyrusAsha_Compact` protocol and log progress to `~/.agents/session-state.md`.',
+    '- Monitor conversation length. If context exceeds 75% capacity or a major milestone completes, automatically follow the `/CyrusAsha_Compact` protocol and log progress to `~/.agents/session-state.md`. Always keep chat output maximally dense and compact.',
     '',
     '## 3. Self-Verification:',
     '- Before finalizing code changes, verify compliance against loaded skills, linter rules, and security checklists.'
@@ -313,7 +346,7 @@ function Install-SlashCommands {
                 '## Protocol:',
                 '1. Index all SKILL.md playbooks in ~/.agents/skills/.',
                 '2. Match user prompt and codebase stack against skill catalog.',
-                '3. Load top 1-3 relevant skills (UI/UX, Backend, Security, SEO, TDD).',
+                '3. Load 1-3 primary skills (and up to 5 in multi-phase tasks based on each phase needs).',
                 '4. Strictly follow the guidelines and patterns of loaded skills.'
             )
         },
@@ -502,7 +535,38 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
         @{ Name = "browser-use";                    Url = "https://github.com/browser-use/browser-use.git" },
         @{ Name = "agent-reach";                    Url = "https://github.com/EdisonChenAI/agent-reach.git" },
         @{ Name = "Scrapegraph-ai";                 Url = "https://github.com/ScrapeGraphAI/Scrapegraph-ai.git" },
-        @{ Name = "awesome-harness-engineering";    Url = "https://github.com/yenanjing/awesome-harness-engineering.git" }
+        @{ Name = "awesome-harness-engineering";    Url = "https://github.com/yenanjing/awesome-harness-engineering.git" },
+
+        # 1. Software Engineering, Coding, QA & Architecture (New)
+        @{ Name = "claude-skills";                  Url = "https://github.com/Jeffallan/claude-skills.git" },
+        @{ Name = "agent-skills";                   Url = "https://github.com/addyosmani/agent-skills.git" },
+        @{ Name = "qa-skills";                      Url = "https://github.com/petrkindlmann/qa-skills.git" },
+        @{ Name = "ponytail";                       Url = "https://github.com/DietrichGebert/ponytail.git" },
+        @{ Name = "one-skill-to-rule-them-all";     Url = "https://github.com/rebelytics/one-skill-to-rule-them-all.git" },
+        @{ Name = "superpowers";                    Url = "https://github.com/obra/superpowers.git" },
+
+        # 2. Security, Reverse Engineering & Vulnerability Auditing (New)
+        @{ Name = "security-audit-skill";           Url = "https://github.com/cloudflare/security-audit-skill.git" },
+        @{ Name = "rea";                            Url = "https://github.com/morluto/rea.git" },
+
+        # 3. SEO & Alternative Search Engines (New)
+        @{ Name = "open-seo";                       Url = "https://github.com/every-app/open-seo.git" },
+
+        # 4. Harness & Performance Optimization (New)
+        @{ Name = "ECC";                            Url = "https://github.com/affaan-m/ECC.git" },
+
+        # 5. Team & Git-Backed Memory (New)
+        @{ Name = "mex";                            Url = "https://github.com/mex-memory/mex.git" },
+
+        # 6. Official Ecosystem Skills (New)
+        @{ Name = "skills-nvidia";                  Url = "https://github.com/NVIDIA/skills.git" },
+        @{ Name = "skills-huggingface";             Url = "https://github.com/huggingface/skills.git" },
+        @{ Name = "skills-anthropic";               Url = "https://github.com/anthropics/skills.git" },
+        @{ Name = "awesome-copilot";                Url = "https://github.com/github/awesome-copilot.git" },
+        @{ Name = "obsidian-skills";                Url = "https://github.com/kepano/obsidian-skills.git" },
+
+        # 7. Terminal Coding Agents (New)
+        @{ Name = "free-pi-cli";                    Url = "https://github.com/dennisonbertram/free-pi-cli.git" }
     )
     foreach ($Repo in $ReposList) {
         $TempRepoDir = Join-Path $env:TEMP $Repo.Name
@@ -527,6 +591,14 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
                 New-Item -ItemType Directory -Force -Path $DestFolder | Out-Null
                 Copy-Item -Recurse -Force -Path "$TempRepoDir\*" -Destination $DestFolder -Exclude ".git" -ErrorAction SilentlyContinue
             }
+            # Auto-discover any subfolder containing a SKILL.md
+            Get-ChildItem -Path $TempRepoDir -Directory -Exclude ".git" -ErrorAction SilentlyContinue | ForEach-Object {
+                if (Test-Path (Join-Path $_.FullName "SKILL.md")) {
+                    $targetSubSkill = Join-Path $SkillsDir $_.Name
+                    New-Item -ItemType Directory -Force -Path $targetSubSkill | Out-Null
+                    Copy-Item -Recurse -Force -Path "$($_.FullName)\*" -Destination $targetSubSkill -Exclude ".git" -ErrorAction SilentlyContinue
+                }
+            }
         } catch {
             Write-Host "  [WARN] $($Repo.Name): $($_.Exception.Message)" -ForegroundColor DarkYellow
         }
@@ -550,6 +622,7 @@ $CollectSources = @(
     (Join-Path $env:USERPROFILE ".cursor"),
     (Join-Path $env:USERPROFILE ".codex"),
     (Join-Path $env:USERPROFILE ".gemini"),
+    (Join-Path $env:USERPROFILE ".gemini\antigravity"),
     (Join-Path $env:USERPROFILE ".windsurf"),
     (Join-Path $env:USERPROFILE ".cline"),
     (Join-Path $env:USERPROFILE ".roo"),
@@ -559,6 +632,10 @@ $CollectSources = @(
     (Join-Path $env:USERPROFILE ".hermes"),
     (Join-Path $env:USERPROFILE ".config\opencode"),
     (Join-Path $env:USERPROFILE ".antigravity"),
+    (Join-Path $env:USERPROFILE ".free-pi"),
+    (Join-Path $env:USERPROFILE ".free-pi\agent"),
+    (Join-Path $env:USERPROFILE ".pi"),
+    (Join-Path $env:USERPROFILE ".pi\agent"),
     (Join-Path $env:USERPROFILE ".copilot")
 ) | Select-Object -Unique
 
@@ -566,31 +643,54 @@ $CollectSubDirs = @("skills", "rules", "agents", "commands", "hooks")
 
 foreach ($SourceBase in $CollectSources) {
     if (-not (Test-Path -LiteralPath $SourceBase)) { continue }
+
+    # If the agent base directory itself is a Junction to ~/.agents, skip it
+    $baseItem = Get-Item -LiteralPath $SourceBase -Force -ErrorAction SilentlyContinue
+    if ($baseItem) {
+        $isBaseJunction = [bool](($baseItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -or ($baseItem.LinkType -eq 'Junction'))
+        if ($isBaseJunction) { continue }
+    }
+
     Write-Host "  -> Scanning: $SourceBase" -ForegroundColor Cyan
 
     foreach ($sub in $CollectSubDirs) {
         $SrcSub = Join-Path $SourceBase $sub
         $DstSub = Join-Path $CentralDir $sub
         if (Test-Path -LiteralPath $SrcSub) {
+            # Skip if $SrcSub is already an NTFS Junction or Symbolic Link pointing back to $CentralDir
+            # This prevents circular self-copying (sharing violations) when re-running setup
+            $srcItem = Get-Item -LiteralPath $SrcSub -Force -ErrorAction SilentlyContinue
+            if ($srcItem) {
+                $isReparse = [bool](($srcItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -or ($srcItem.LinkType -eq 'Junction'))
+                if ($isReparse) {
+                    continue
+                }
+            }
             Copy-Item -Recurse -Force "$SrcSub\*" $DstSub -ErrorAction SilentlyContinue
         }
     }
 
     $SrcMcp = Join-Path $SourceBase "mcp.json"
     if (Test-Path -LiteralPath $SrcMcp -PathType Leaf) {
-        if (-not (Test-Path -LiteralPath $McpFile)) {
+        $mcpItem = Get-Item -LiteralPath $SrcMcp -Force -ErrorAction SilentlyContinue
+        $isMcpSymlink = $mcpItem -and [bool]($mcpItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint)
+        if (-not $isMcpSymlink -and -not (Test-Path -LiteralPath $McpFile)) {
             Copy-Item -LiteralPath $SrcMcp -Destination $McpFile -Force -ErrorAction SilentlyContinue
             Write-Host "    [COPIED] mcp.json from $SourceBase" -ForegroundColor DarkGray
         }
     }
 
-    # Also collect knowledge.md / AGENTS.md / CLAUDE.md / GEMINI.md if present
+    # Also collect knowledge.md / AGENTS.md / CLAUDE.md / GEMINI.md if present (ignore symlinks)
     foreach ($fname in @("knowledge.md", "AGENTS.md", "CLAUDE.md", "GEMINI.md", "CODEX.md")) {
         $SrcFile = Join-Path $SourceBase $fname
         if (Test-Path -LiteralPath $SrcFile -PathType Leaf) {
-            $DstFile = Join-Path $CentralDir $fname
-            if (-not (Test-Path -LiteralPath $DstFile)) {
-                Copy-Item -LiteralPath $SrcFile -Destination $DstFile -Force -ErrorAction SilentlyContinue
+            $fItem = Get-Item -LiteralPath $SrcFile -Force -ErrorAction SilentlyContinue
+            $isFSymlink = $fItem -and [bool]($fItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint)
+            if (-not $isFSymlink) {
+                $DstFile = Join-Path $CentralDir $fname
+                if (-not (Test-Path -LiteralPath $DstFile)) {
+                    Copy-Item -LiteralPath $SrcFile -Destination $DstFile -Force -ErrorAction SilentlyContinue
+                }
             }
         }
     }
@@ -611,6 +711,11 @@ $AgentHomes = @(
     (Join-Path $env:USERPROFILE ".config\opencode"),
     (Join-Path $env:USERPROFILE ".opencode"),
     (Join-Path $env:USERPROFILE ".antigravity"),
+    (Join-Path $env:USERPROFILE ".gemini\antigravity"),
+    (Join-Path $env:USERPROFILE ".free-pi"),
+    (Join-Path $env:USERPROFILE ".free-pi\agent"),
+    (Join-Path $env:USERPROFILE ".pi"),
+    (Join-Path $env:USERPROFILE ".pi\agent"),
     (Join-Path $env:USERPROFILE ".copilot"),
     (Join-Path $env:USERPROFILE ".freebuff"),
     (Join-Path $env:USERPROFILE ".codebuff"),
@@ -657,6 +762,10 @@ Update-ManagedBlock -FilePath (Join-Path $env:USERPROFILE ".freebuff\knowledge.m
 Update-ManagedBlock -FilePath (Join-Path $env:USERPROFILE ".codebuff\knowledge.md") -BlockLines @($MasterKnowledge)
 Update-ManagedBlock -FilePath (Join-Path $env:USERPROFILE ".freebuff\AGENTS.md") -BlockLines @($MasterGeneric)
 Update-ManagedBlock -FilePath (Join-Path $env:USERPROFILE ".codebuff\AGENTS.md") -BlockLines @($MasterGeneric)
+Update-ManagedBlock -FilePath (Join-Path $env:USERPROFILE ".free-pi\agent\AGENTS.md")    -BlockLines @($MasterGeneric)
+Update-ManagedBlock -FilePath (Join-Path $env:USERPROFILE ".free-pi\agent\knowledge.md") -BlockLines @($MasterKnowledge)
+Update-ManagedBlock -FilePath (Join-Path $env:USERPROFILE ".free-pi\AGENTS.md")          -BlockLines @($MasterGeneric)
+Update-ManagedBlock -FilePath (Join-Path $env:USERPROFILE ".pi\agent\AGENTS.md")         -BlockLines @($MasterGeneric)
 
 if ($env:APPDATA) {
     Update-ManagedBlock -FilePath (Join-Path $env:APPDATA "freebuff\knowledge.md") -BlockLines @($MasterKnowledge)
@@ -788,6 +897,7 @@ function Initialize-AgentWorkspace {
             '5. Use MCP servers from `.agents/mcp.json`',
             '6. Honor slash-command playbooks in `.agents/commands/`:',
             '   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` ',
+            '7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).',
             '',
             'If `.agents/` is missing, run in PowerShell from the project root:',
             '',
@@ -908,9 +1018,43 @@ function Initialize-AgentWorkspace {
         Set-Content -Path $FilePath -Value $updated -Encoding UTF8 -NoNewline
     }
 
-    # 1) Junction .agents -> ~/.agents  (skip if anything already exists there)
+    # 1) Junction .agents -> ~/.agents (Verify health, repair broken/stale junctions from OS reinstallation)
     $LocalAgents = Join-Path $ProjectPath '.agents'
-    if (-not (Test-Path -LiteralPath $LocalAgents)) {
+    $needsJunction = $true
+    $existingItem = Get-Item -LiteralPath $LocalAgents -Force -ErrorAction SilentlyContinue
+
+    if ($null -ne $existingItem) {
+        $isReparse = [bool]($existingItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint)
+        if ($isReparse) {
+            $currentTarget = $existingItem.Target
+            if ($currentTarget -is [array]) { $currentTarget = $currentTarget[0] }
+
+            $targetAccessible = $false
+            try { $targetAccessible = Test-Path -LiteralPath $LocalAgents -ErrorAction Stop } catch { $targetAccessible = $false }
+
+            if (($currentTarget -eq $CentralDir) -and $targetAccessible) {
+                Write-Host ('  [OK]     ' + $LocalAgents + ' -> ' + $CentralDir + ' (Healthy Junction)') -ForegroundColor DarkGray
+                $needsJunction = $false
+            } else {
+                Write-Host ('  [REPAIR] Stale or inaccessible .agents junction found (Target: ' + $currentTarget + '). Re-linking...') -ForegroundColor DarkYellow
+                cmd /c rmdir "`"$LocalAgents`"" > $null 2>&1
+                $needsJunction = $true
+            }
+        } else {
+            # Regular directory: if empty, replace with junction
+            $subItems = Get-ChildItem -LiteralPath $LocalAgents -Force -ErrorAction SilentlyContinue
+            if ($null -eq $subItems -or $subItems.Count -eq 0) {
+                Write-Host ('  [REPAIR] Empty .agents directory found. Replacing with junction...') -ForegroundColor DarkYellow
+                Remove-Item -LiteralPath $LocalAgents -Force -Recurse -ErrorAction SilentlyContinue
+                $needsJunction = $true
+            } else {
+                Write-Host ('  [WARN]   ' + $LocalAgents + ' is a non-empty regular folder. Preserving existing contents.') -ForegroundColor DarkYellow
+                $needsJunction = $false
+            }
+        }
+    }
+
+    if ($needsJunction) {
         $linked = $false
         try {
             New-Item -ItemType Junction -Path $LocalAgents -Target $CentralDir -ErrorAction Stop | Out-Null
@@ -924,8 +1068,6 @@ function Initialize-AgentWorkspace {
         } else {
             Write-Host '  [WARN]   Could not create .agents junction (Developer Mode / permissions).' -ForegroundColor DarkYellow
         }
-    } else {
-        Write-Host ('  [KEEP]   ' + $LocalAgents + ' (already exists, left untouched)') -ForegroundColor DarkGray
     }
 
     # 2) Root instruction files that GUI apps actually open (with tailored project operating guides)
@@ -1065,6 +1207,12 @@ foreach ($aliasName in $AliasNames) {
 
 Set-Content -Path $InitScriptPath -Value $InitScript -Encoding UTF8
 Write-Host "[OK] Wrote $InitScriptPath" -ForegroundColor Cyan
+
+$LocalInitScriptPath = Join-Path $PSScriptRoot "init-project-files.ps1"
+if ($PSScriptRoot -and (Test-Path -LiteralPath $PSScriptRoot)) {
+    Set-Content -Path $LocalInitScriptPath -Value $InitScript -Encoding UTF8
+    Write-Host "[OK] Wrote $LocalInitScriptPath" -ForegroundColor Cyan
+}
 
 # Load it in THIS session
 . $InitScriptPath

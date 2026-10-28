@@ -1,16 +1,20 @@
-# 🚀 Global AI Agent Configurator for Windows (v1.0.0 - Master Edition)
+<div align="center">
+  <img src="assets/CyrusAsha-Banner.png" alt="CyrusAsha - Code. Intelligence. Order" width="350" />
+</div>
+
+# 🚀 Global AI Agent Configurator for Windows (v1.1.0 - Enterprise Edition)
 
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6?logo=windows)](https://microsoft.com/windows)
 [![PowerShell](https://img.shields.io/badge/Shell-PowerShell%205.1%2B%20%7C%207%2B-5391FE?logo=powershell)](https://microsoft.com/powershell)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Supported Agents](https://img.shields.io/badge/Agents-19%20AI%20IDEs%20%26%20CLIs-success)]()
-[![Integrated Repos](https://img.shields.io/badge/Repos-22%20Open--Source-blueviolet)]()
+[![Supported Agents](https://img.shields.io/badge/Agents-20%2B%20AI%20IDEs%20%26%20CLIs-success)]()
+[![Integrated Repos](https://img.shields.io/badge/Repos-39%20Open--Source-blueviolet)]()
 
 ---
 
-یک اسکریپت جامع، خودکار و یکپارچه **PowerShell (نسخه ۱.۰.۰ - Master Edition)** برای ساخت و پیکربندی پوشه مرجع مرکزی `C:\Users\<Username>\.agents` در ویندوز.
+یک اسکریپت جامع، خودکار و یکپارچه **PowerShell (نسخه ۱.۱.۰ - Enterprise Edition)** برای ساخت و پیکربندی پوشه مرجع مرکزی `C:\Users\<Username>\.agents` در ویندوز.
 
-این پروژه تمامی **اسکیل‌ها (Skills)**، **سرورهای MCP**، **قوانین خودکار (Rules)**، **دستورات اسلش (Slash Commands)**، **هوک‌ها (Hooks)** و **ایجنت‌های تخصصی (Sub-Agents)** را از **۲۲ مخزن برتر متن‌باز دنیا** یک‌جا دانلود و تنظیم کرده و از طریق **لینک پوشه (Junction / Symbolic Link)** به تمامی ایجنت‌های هوش مصنوعی روی سیستم شما متصل می‌کند.
+این پروژه تمامی **اسکیل‌ها (Skills)**، **سرورهای MCP**، **قوانین خودکار (Rules)**، **دستورات اسلش (Slash Commands)**، **هوک‌ها (Hooks)** و **ایجنت‌های تخصصی (Sub-Agents)** را از **۳۹ مخزن برتر متن‌باز دنیا** یک‌جا دانلود و تنظیم کرده و از طریق **لینک پوشه (Junction / Symbolic Link)** به بیش از ۲۰ ایجنت هوش مصنوعی روی سیستم شما متصل می‌کند.
 
 ---
 
@@ -59,7 +63,7 @@ The script then creates **Junction / Symbolic Link** connections from each agent
 - `C:\Users\<Username>\.claude\rules` → `C:\Users\<Username>\.agents\rules`
 - `C:\Users\<Username>\.codex\agents` → `C:\Users\<Username>\.agents\agents`
 
-This means **every skill installed once in `.agents\skills\` is instantly available to all 19 supported agents** — no duplicate copying, no configuration drift.
+This means **every skill installed once in `.agents\skills\` is instantly available to all 20+ supported agents** — no duplicate copying, no configuration drift.
 
 **When you install a new skill / When a new SKILL.md appears:**
 1. Drop the skill folder into `%USERPROFILE%\.agents\skills\` (or let the script sync it from GitHub)
@@ -75,18 +79,19 @@ This means **every skill installed once in `.agents\skills\` is instantly availa
 هنگامی که اسکریپت `CyrusAsha_GlobalAgents.ps1` اجرا می‌شود، فرآیند **دوگانه جمع‌آوری و لینک‌سازی** انجام می‌شود:
 
 **گام ۱ — جمع‌آوری (Collect):**
-اسکریپت تمامی پوشه‌های خانگی ایجنت‌های هوش مصنوعی شناخته‌شده روی سیستم شما (Freebuff, Codebuff, Claude Code, Cursor, Codex, Gemini CLI, Windsurf, Cline, Roo Code, Continue.dev, Trae, Junie, Amazon Q, Hermes, OpenCode, Antigravity, Copilot و ...) رااسکن می‌کند و تمامی محتویات پوشه‌های `skills/`, `rules/`, `agents/`, `commands/`, `hooks/`, `mcp.json` و فایل‌های راهنما (`knowledge.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `CODEX.md`) را از هر یک از خانه‌های ایجنت‌ها کپی می‌کند و در پوشه مرکزی **`%USERPROFILE%\.agents\`** قرار می‌دهد.
+اسکریپت تمامی پوشه‌های خانگی ایجنت‌های هوش مصنوعی شناخته‌شده روی سیستم شما (Freebuff, Codebuff, Claude Code, Cursor, Codex, Gemini CLI, Windsurf, Cline, Roo Code, Continue.dev, Trae, Junie, Amazon Q, Hermes, OpenCode, Antigravity, Copilot, Free-Pi CLI و ...) را اسکن می‌کند و تمامی محتویات پوشه‌های `skills/`, `rules/`, `agents/`, `commands/`, `hooks/`, `mcp.json` و فایل‌های راهنما (`knowledge.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `CODEX.md`) را از هر یک از خانه‌های ایجنت‌ها کپی می‌کند و در پوشه مرکزی **`%USERPROFILE%\.agents\`** قرار می‌دهد.
 
 **گام ۲ — لینک‌سازی (Link):**
 اسکریپت سپس اتصال‌های **Junction / Symbolic Link** را از زیرپوشه‌های خانه هر ایجنت به زیرپوشه‌های مربوطه در `.agents\` ایجاد می‌کند. به عنوان مثال:
 - `C:\Users\<Username>\.cursor\skills` → `C:\Users\<Username>\.agents\skills`
 - `C:\Users\<Username>\.claude\rules` → `C:\Users\<Username>\.agents\rules`
 - `C:\Users\<Username>\.codex\agents` → `C:\Users\<Username>\.agents\agents`
+- `C:\Users\<Username>\.free-pi\skills` → `C:\Users\<Username>\.agents\skills`
 
-این بدان معناست که **هر اسکیل یکبار در `.agents\skills\` نصب شود، برای کلیه ۱۹ ایجنت پشتیبانی‌شده در لحظه در دسترس است** — بدون کپی تکراری، بدون اختلاف پیکربندی.
+این بدان معناست که **هر اسکیل یکبار در `.agents\skills\` نصب شود، برای کلیه ۲۰+ ایجنت پشتیبانی‌شده در لحظه در دسترس است** — بدون کپی تکراری، بدون اختلاف پیکربندی.
 
 **وقتی یک اسکیل جدید نصب می‌شود / When a new SKILL.md appears:**
-1. پوشه اسکیل را در `%USERPROFILE%\.agents\skills\` قرار دهید (یا از طریق سئینک گیت‌هاب اسکریپت به آن دسترسی پیدا کند)
+1. پوشه اسکیل را در `%USERPROFILE%\.agents\skills\` قرار دهید (یا از طریق سینک گیت‌هاب اسکریپت به آن دسترسی پیدا کند)
 2. کلیه ایجنت‌های متصل بلافاصله از طریق پوشه `skills` لینک‌شده خود آن را می‌بینند
 3. دستور `/CyrusAsha_Skills` را در چت هر ایجنت اجرا کنید تا اسکیل بارگذاری و استفاده شود.
 
@@ -96,7 +101,8 @@ This means **every skill installed once in `.agents\skills\` is instantly availa
 |:---|:---|:---:|
 | Hermes Agent | `C:\Users\<Username>\.hermes` | ✅ Full |
 | OpenCode | `C:\Users\<Username>\.config\opencode` | ✅ Full |
-| Antigravity | `C:\Users\<Username>\.antigravity` | ✅ Full |
+| Antigravity | `C:\Users\<Username>\.antigravity` & `.gemini\antigravity` | ✅ Full |
+| Free-Pi CLI *(جدید)* | `C:\Users\<Username>\.free-pi` & `.free-pi\agent` | ✅ Full |
 | VS Copilot | `C:\Users\<Username>\.copilot` | ✅ Full |
 | Freebuff / Codebuff | `C:\Users\<Username>\.freebuff` and `%APPDATA%\freebuff` | ✅ Full |
 | Claude Code | `C:\Users\<Username>\.claude` | ✅ Full |
@@ -118,7 +124,8 @@ This means **every skill installed once in `.agents\skills\` is instantly availa
 |:---|:---|:---:|
 | **Hermes Agent** | `C:\Users\<Username>\.hermes` | ✅ کامل |
 | **OpenCode** | `C:\Users\<Username>\.config\opencode` | ✅ کامل |
-| **Antigravity** | `C:\Users\<Username>\.antigravity` | ✅ کامل |
+| **Antigravity** | `C:\Users\<Username>\.antigravity` و `.gemini\antigravity` | ✅ کامل |
+| **Free-Pi CLI** *(جدید)* | `C:\Users\<Username>\.free-pi` و `.free-pi\agent` | ✅ کامل |
 | **VS Copilot** | `C:\Users\<Username>\.copilot` | ✅ کامل |
 | **Freebuff / Codebuff** | `C:\Users\<Username>\.freebuff` و `%APPDATA%\freebuff` | ✅ کامل |
 | **Claude Code** | `C:\Users\<Username>\.claude` | ✅ کامل |
@@ -138,11 +145,11 @@ This means **every skill installed once in `.agents\skills\` is instantly availa
 
 ---
 
-## 📦 Integrated Repositories (22 Open-Source Tools) / فهرست ۲۲ مخزن ادغام‌شده
+## 📦 Integrated Repositories (39 Open-Source Tools) / فهرست ۳۹ مخزن ادغام‌شده
 
-The script automatically clones (or updates via `git pull` on subsequent runs) the following 22 repositories and places their contents into the central `.agents` folder:
+The script automatically clones (or updates via `git pull` on subsequent runs) the following 39 repositories and places their contents into the central `.agents` folder:
 
-این اسکریپت در هنگام اجرا، ۲۲ مخزن زیر را به صورت خودکار کلون (یا در اجراهای بعدی `git pull` و آپدیت) کرده و محتوای آن‌ها را در پوشه مرکزی `.agents` جای‌گذاری می‌کند:
+این اسکریپت در هنگام اجرا، ۳۹ مخزن زیر را به صورت خودکار کلون (یا در اجراهای بعدی `git pull` و آپدیت) کرده و محتوای آن‌ها را در پوشه مرکزی `.agents` جای‌گذاری می‌کند:
 
 ### 🧩 Frameworks, Harnesses & Multi-Agent Systems / فریم‌ورک‌ها، هارنس‌ها و سیستم‌های چند-ایجنتی
 
@@ -152,26 +159,28 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | `ruflo` | [ruvnet/ruflo](https://github.com/ruvnet/ruflo.git) | Harness framework for agent swarms, adaptive memory, and intelligent model routing. |
 | `agency-agents` | [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents.git) | Complete collection of specialized agents (frontend architect, backend, project manager, security, marketing, ...). |
 | `deer-flow` | [bytedance/deer-flow](https://github.com/bytedance/deer-flow.git) | Super-agent and harness framework by ByteDance for deep research, coding, and automation. |
+| `ECC` *(جدید)* | [affaan-m/ECC](https://github.com/affaan-m/ECC.git) | Agent harness performance optimization system, memory, instincts, and research-first workflows. |
 | `awesome-harness-engineering` | [yenanjing/awesome-harness-engineering](https://github.com/yenanjing/awesome-harness-engineering.git) | Directory and reference for harness engineering, architecture patterns, and agent evaluation. |
 
-### 🎨 Design, UI/UX & 3D / طراحی رابط کاربری، فرانت‌اند و گرافیک
+### 🛠️ Software Engineering, Coding & QA / مهندسی نرم‌افزار، کدنویسی، تست و تضمین کیفیت
 
 | Repository | GitHub | Description / کاربرد |
 |:---|:---|:---|
-| `taste-skill` | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill.git) | Enhances agent design taste, art direction selection, credible images, and visual browser testing. |
-| `ui-ux-pro-max-skill` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git) | UI/UX knowledge base including 79 styles, 192 product types, color palettes, and standard typography. |
-| `tastecode` | [vishalx0707/tastecode.git](https://github.com/vishalx0707/tastecode.git) | Frontend coding quality improvement layer and adherence to aesthetic principles in components. |
-| `skills-emilkowalski` | [emilkowalski/skills](https://github.com/emilkowalski/skills.git) | Specialized skills for smooth web animations, React Native/Expo, Swift, and Apple design principles. |
-| `diagram-design` | [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design.git) | Professional architecture diagrams, flowcharts, and sequences in standalone HTML+SVG files. |
-| `awesome-claude-design` | [VoltAgent/awesome-claude-design](https://github.com/VoltAgent/awesome-claude-design.git) | Ready-made design systems (`DESIGN.md`) for generating modern user interfaces with a single prompt. |
-| `img2threejs` | [img2threejs/img2threejs](https://github.com/img2threejs/img2threejs.git) | Converts 2D reference images into interactive and animated 3D scenes and models with Three.js. |
+| `claude-skills` *(جدید)* | [Jeffallan/claude-skills](https://github.com/Jeffallan/claude-skills.git) | 67 specialized full-stack engineering skills with progressive disclosure architecture saving 50% tokens. |
+| `agent-skills` *(جدید)* | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills.git) | Production-grade software engineering lifecycle skills (Plan, Build, Verify, Review) by Addy Osmani. |
+| `qa-skills` *(جدید)* | [petrkindlmann/qa-skills](https://github.com/petrkindlmann/qa-skills.git) | 50+ enterprise QA and automated testing skills (Playwright, Cypress, Unit, Chaos, Performance). |
+| `ponytail` *(جدید)* | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail.git) | Senior developer minimalism mindset: anti-bloat, native stdlib preference, zero-unnecessary-code. |
+| `one-skill-to-rule-them-all` *(جدید)* | [rebelytics/one-skill-to-rule-them-all](https://github.com/rebelytics/one-skill-to-rule-them-all.git) | Autonomous task observer meta-skill that analyzes sessions, captures friction, and evolves skills. |
+| `superpowers` *(جدید)* | [obra/superpowers](https://github.com/obra/superpowers.git) | Agentic skills framework with TDD methodology, isolated Git worktrees, and parallel review agents. |
 
-### 🔒 Cybersecurity & Pentesting / امنیت سایبری و تست نفوذ
+### 🔒 Cybersecurity & Pentesting / امنیت سایبری، ممیزی و مهندسی معکوس
 
 | Repository | GitHub | Description / کاربرد |
 |:---|:---|:---|
-| `Anthropic-Cybersecurity-Skills` | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git) | 817+ structured security skills based on MITRE ATT&CK, NIST CSF 2.0, and D3FEND for forensics and code review. |
+| `Anthropic-Cybersecurity-Skills` | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git) | 817+ structured security skills based on MITRE ATT&CK, NIST CSF 2.0, and D3FEND. |
+| `security-audit-skill` *(جدید)* | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill.git) | Multi-phase source code security audit skill with machine-readable findings and independent validation. |
 | `strix` | [usestrix/strix](https://github.com/usestrix/strix.git) | AI Pentester intelligent agent for discovering code, web, and API vulnerabilities with PoC generation. |
+| `rea` *(جدید)* | [morluto/rea](https://github.com/morluto/rea.git) | Reverse-engineer application behavior and native binaries without original source code. |
 
 ### 🔍 SEO, AEO & AI Engine Optimization / سئو، AEO و بهینه‌سازی موتورهای هوش مصنوعی
 
@@ -180,6 +189,19 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | `Claude-Code-SEO-skills` | [VibeWithClaude/Claude-Code-SEO-skills](https://github.com/VibeWithClaude/Claude-Code-SEO-skills.git) | Collection of specialized skills and sub-agents for complete SEO, schema, sitemap, and content optimization. |
 | `claude-seo` | [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo.git) | Comprehensive package of 26 sub-skills and 19 sub-agents for technical SEO, E-E-A-T, backlink analysis, llms.txt, and reporting. |
 | `geo-optimizer-skill` | [Auriti-Labs/geo-optimizer-skill](https://github.com/Auriti-Labs/geo-optimizer-skill.git) | Website optimization for citation in AI answer engines (ChatGPT, Perplexity, Gemini, AI Overviews). |
+| `open-seo` *(جدید)* | [every-app/open-seo](https://github.com/every-app/open-seo.git) | Open-source, serverless alternative to Ahrefs and Semrush integrated via MCP. |
+
+### 🎨 Design, UI/UX & 3D / طراحی رابط کاربری، فرانت‌اند و گرافیک
+
+| Repository | GitHub | Description / کاربرد |
+|:---|:---|:---|
+| `taste-skill` | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill.git) | Enhances agent design taste, art direction selection, credible images, and visual browser testing. |
+| `ui-ux-pro-max-skill` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git) | UI/UX knowledge base including 79 styles, 192 product types, color palettes, and standard typography. |
+| `tastecode` | [vishalx0707/tastecode](https://github.com/vishalx0707/tastecode.git) | Frontend coding quality improvement layer and adherence to aesthetic principles in components. |
+| `skills-emilkowalski` | [emilkowalski/skills](https://github.com/emilkowalski/skills.git) | Specialized skills for smooth web animations, React Native/Expo, Swift, and Apple design principles. |
+| `diagram-design` | [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design.git) | Professional architecture diagrams, flowcharts, and sequences in standalone HTML+SVG files. |
+| `awesome-claude-design` | [VoltAgent/awesome-claude-design](https://github.com/VoltAgent/awesome-claude-design.git) | Ready-made design systems (`DESIGN.md`) for generating modern user interfaces with a single prompt. |
+| `img2threejs` | [img2threejs/img2threejs](https://github.com/img2threejs/img2threejs.git) | Converts 2D reference images into interactive and animated 3D scenes and models with Three.js. |
 
 ### 🧠 Memory & Context Management / حافظه بلندمدت و مدیریت کانتکست
 
@@ -187,6 +209,7 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 |:---|:---|:---|
 | `Agent-Memory` | [Threesided-Studios/Agent-Memory](https://github.com/Threesided-Studios/Agent-Memory.git) | Persistent memory system combining keyword search, vector search, and knowledge graph for agents. |
 | `OpenViking` | [volcengine/OpenViking](https://github.com/volcengine/OpenViking.git) | Self-completing context database for memory integration, RAG systems, and agent skills. |
+| `mex` *(جدید)* | [mex-memory/mex](https://github.com/mex-memory/mex.git) | Git-native team & project memory shared across engineering teams and coding agents. |
 
 ### 🌐 Browser & Web Automation / اتوماسیون مرورگر، وب‌گردی و اسکرپینگ
 
@@ -195,6 +218,22 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | `browser-use` | [browser-use/browser-use](https://github.com/browser-use/browser-use.git) | Powerful tool to give agents web browsing, clicking, form filling, and real page interaction capabilities. |
 | `agent-reach` | [EdisonChenAI/agent-reach](https://github.com/EdisonChenAI/agent-reach.git) | Direct agent access to internet platforms (Twitter/X, YouTube, Reddit, GitHub, ...). |
 | `Scrapegraph-ai` | [ScrapeGraphAI/Scrapegraph-ai](https://github.com/ScrapeGraphAI/Scrapegraph-ai.git) | Intelligent graph- and LLM-based scraping for extracting structured data from websites and documents. |
+
+### 🏛️ Official Tech Ecosystems & Hardware Integration / اسکیل‌های رسمی اکوسیستم‌های فناوری
+
+| Repository | GitHub | Description / کاربرد |
+|:---|:---|:---|
+| `skills-nvidia` *(جدید)* | [NVIDIA/skills](https://github.com/NVIDIA/skills.git) | Official NVIDIA skills for Physical AI, robotics, CUDA-X, simulation, and enterprise RAG. |
+| `skills-huggingface` *(جدید)* | [huggingface/skills](https://github.com/huggingface/skills.git) | Deep Hugging Face integration: models, datasets, Spaces, and cloud training pipelines. |
+| `skills-anthropic` *(جدید)* | [anthropics/skills](https://github.com/anthropics/skills.git) | Official public standard and foundational agent skills from Anthropic. |
+| `awesome-copilot` *(جدید)* | [github/awesome-copilot](https://github.com/github/awesome-copilot.git) | Community-driven official collection of custom instructions, skills, and agents for GitHub Copilot. |
+| `obsidian-skills` *(جدید)* | [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills.git) | Official agent skills by Steph Ango (Kepano) for Obsidian vaults, CLI, and JSON Canvas. |
+
+### 💻 Terminal Coding Agents / ایجنت‌های خط فرمان
+
+| Repository | GitHub | Description / کاربرد |
+|:---|:---|:---|
+| `free-pi-cli` *(جدید)* | [dennisonbertram/free-pi-cli](https://github.com/dennisonbertram/free-pi-cli.git) | Free open terminal coding agent client with private context routing and zero ads in model prompt. |
 
 ---
 
@@ -236,7 +275,7 @@ You can use these 8 commands in the chat of any of your agents:
 | Slash Command | Function / عملکرد |
 |:---|:---|
 | `/CyrusAsha_Auto` | **Fully autonomous pipeline:** Breaks goals into technical tasks, runs `/CyrusAsha_Agents`, `/CyrusAsha_Skills`, and `/CyrusAsha_Rules` logic in parallel, implements code, and performs security checks. |
-| `/CyrusAsha_Skills` | Scans all `SKILL.md` files in `~/.agents/skills/`, matches against user prompt, and loads 1–3 relevant skills (UI/UX, Security, SEO, TDD). |
+| `/CyrusAsha_Skills` | Scans all `SKILL.md` files in `~/.agents/skills/`, matches against user prompt, and loads 1–3 primary skills (and up to 5 in multi-phase tasks based on each phase needs). |
 | `/CyrusAsha_Rules` | Scans all rules in `~/.agents/rules/`, audits current codebase, and refactors code for 100% architecture compliance. |
 | `/CyrusAsha_Agents` | Scans specialist personas in `~/.agents/agents/`, selects the best expert (e.g., database architect or frontend specialist), and delegates the task. |
 | `/CyrusAsha_Audit-Security` | Performs a full security audit on the repository, provides a status table, and creates/completes the 5 standard files. |
@@ -247,7 +286,7 @@ You can use these 8 commands in the chat of any of your agents:
 | دستور اسلش | عملکرد و کارایی دقیق |
 |:---|:---|
 | **`/CyrusAsha_Auto`** | **اجرای پایپ‌لاین کاملاً خودکار:** شکستن هدف به تسک‌های فنی، اجرای هم‌زمان منطق `/CyrusAsha_Agents`، `/CyrusAsha_Skills` و `/CyrusAsha_Rules`، پیاده‌سازی کد و بررسی امنیتی. |
-| **`/CyrusAsha_Skills`** | اسکن تمام فایل‌های `SKILL.md` در `~/.agents/skills/`، تطبیق با درخواست کاربر و بارگذاری ۱ تا ۳ مهارت مرتبط (UI/UX, Security, SEO, TDD). |
+| **`/CyrusAsha_Skills`** | اسکن تمام فایل‌های `SKILL.md` در `~/.agents/skills/`، تطبیق با درخواست کاربر و بارگذاری ۱ تا ۳ اسکیل اصلی (و حداکثر تا ۵ اسکیل در وظایف چندمرحله‌ای بر اساس نیاز هر فاز). |
 | **`/CyrusAsha_Rules`** | اسکن تمام قوانین موجود در `~/.agents/rules/`، ممیزی کدهای فعلی پروژه و ریفکتور کردن کدها برای انطباق ۱۰۰٪ با استانداردهای معماری. |
 | **`/CyrusAsha_Agents`** | اسکن شخصیت‌های تخصصی در `~/.agents/agents/`، انتخاب بهترین متخصص (مثلاً معمار دیتابیس یا متخصص فرانت‌اند) و واگذاری تسک به او. |
 | **`/CyrusAsha_Audit-Security`** | اجرای ممیزی کامل امنیتی روی پروژه، ارائه جدول وضعیت و ساخت/تکمیل ۵ فایل استاندارد (`SECURITY.md`, `AGENTS.md`, `.env.example`, `THREAT-MODEL.md`, `SECURITY-CHECKLIST.md`). |
@@ -265,7 +304,7 @@ Make sure the following tools are installed on your Windows:
 
 1. **Windows 10 / 11**
 2. **PowerShell** (version 5.1 or 7+)
-3. **Git** (installed and available in system `PATH` for cloning 22 repositories)
+3. **Git** (installed and available in system `PATH` for cloning 39 repositories)
 4. **Node.js (v18+)** (for `npx` command to run MCP servers)
 5. **Python (v3.10+)** (recommended for some skills and scraping/auditing tools)
 
@@ -418,7 +457,7 @@ Close and reopen your coding environments or agent terminals (**Freebuff, Codebu
 
 ### 3. Periodic Ecosystem Update / بروزرسانی دوره‌ای کل اکوسیستم
 
-Whenever you want to update all 22 repositories and skills to the latest GitHub versions, simply run `CyrusAsha_GlobalAgents.ps1` again. The script does not touch your `mcp.json` or tokens; it only `git pull`s and updates the repositories.
+Whenever you want to update all 39 repositories and skills to the latest GitHub versions, simply run `CyrusAsha_GlobalAgents.ps1` again. The script does not touch your `mcp.json` or tokens; it only `git pull`s and updates the repositories.
 
 هر زمان که خواستید تمامی ۲۲ مخزن و اسکیل‌ها به آخرین نسخه گیت‌هاب بروزرسانی شوند، کافی است مجدداً اسکریپت `CyrusAsha_GlobalAgents.ps1` را اجرا کنید. اسکریپت به فایل `mcp.json` و توکن‌های شما دست نمی‌زند و صرفاً مخازن را `git pull` و آپدیت می‌کند.
 

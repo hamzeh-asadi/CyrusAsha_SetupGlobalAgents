@@ -1,4 +1,4 @@
-<!-- GLOBAL-AI-AGENTS:START -->
+﻿<!-- GLOBAL-AI-AGENTS:START -->
 # Global AI Agent Knowledge & Orchestration Index
 
 CRITICAL INSTRUCTION FOR CLAUDE CODE
@@ -22,7 +22,8 @@ Before planning, coding, refactoring, UI/UX, SEO, or security work, silently:
 4. Adopt a specialist persona from `.agents/agents/` when the domain is specific
 5. Use MCP servers from `.agents/mcp.json`
 6. Honor slash-command playbooks in `.agents/commands/`:
-   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact`
+   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` 
+7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).
 
 If `.agents/` is missing, run in PowerShell from the project root:
 
@@ -35,7 +36,7 @@ Do not ignore this index. Treat `.agents/` as the single source of truth.
 # Claude Code Project Guide: CyrusAsha_SetupGlobalAgents
 
 ## 1. Project Context
-This codebase maintains the **Global AI Agent Configurator for Windows**, automating the configuration of 19+ AI coding tools through NTFS Directory Junctions and modular skills from 22 open-source repositories.
+This codebase maintains the **Global AI Agent Configurator for Windows**, automating the configuration of 20+ AI coding tools through NTFS Directory Junctions and modular skills from 39 open-source repositories.
 
 Claude Code's personal home directory (`~/.claude`) is directly junctioned to this system:
 - `~/.claude/skills` -> `~/.agents/skills`
@@ -48,22 +49,15 @@ Claude Code's personal home directory (`~/.claude`) is directly junctioned to th
   `.\CyrusAsha_SetupGlobalAgents.cmd`
 - **Execute Orchestrator Directly**:
   `powershell.exe -ExecutionPolicy Bypass -File .\CyrusAsha_GlobalAgents.ps1`
-- **Lint PowerShell Scripts with PSScriptAnalyzer**:
-  `pwsh -Command "Invoke-ScriptAnalyzer -Path .\ -Recurse -Severity Error, Warning"`
-- **Test Workspace Initializer**:
-  `powershell.exe -Command ". .\CyrusAsha_GlobalAgents.ps1; Initialize-AgentWorkspace -Path . -Full"`
-- **Validate Junction Status**:
-  `cmd.exe /c "dir /a .agents"`
+- **Initialize Any Project**:
+  `powershell.exe -Command ". .\init-project-files.ps1; Initialize-AgentWorkspace -Path . -Full"`
+- **Lint Scripts**:
+  `powershell.exe -Command "Invoke-ScriptAnalyzer -Path .\ -Recurse -Severity Error, Warning"`
+- **Verify Junctions**:
+  `powershell.exe -Command "(Get-Item .agents).LinkType -eq 'Junction'"`
 
-## 3. PowerShell Code Style & Standards
-- **Verb-Noun Naming**: Use official PowerShell approved verbs (`Get-`, `Set-`, `New-`, `Update-`, `Install-`).
-- **Parameter Validation**: Explicitly type parameters and use `[Parameter(Mandatory)]` where required.
-- **Error Handling**: Use `try / catch` blocks with `-ErrorAction Stop` for critical operations (e.g. junction creation, file writing).
-- **Encoding**: Always specify `-Encoding UTF8` when reading or writing files via `Get-Content` or `Set-Content`.
-- **Delimited Updates**: Modifications to user project files must strictly occur inside `Update-ManagedBlock` or `Update-GaMarkedSection`.
-- **No PowerShell 7 Exclusives**: Maintain backward compatibility with Windows PowerShell 5.1 (avoid `??`, `||`, `&&` in scripts).
-
-## 4. Key Security Boundaries
-- Never commit `.agents` (enforced via `.gitignore`).
-- Never overwrite `mcp.json` if it already exists in the user profile (user API keys must be preserved).
-- Always ensure all slash commands in `.agents/commands/` are mirrored with both `CyrusAsha_*` and short alias names.
+## 3. Critical Rules for Claude Code
+- **Non-Destructive Managed Blocks**: Never remove existing content outside `<!-- GLOBAL-AI-AGENTS:START -->` and `<!-- GLOBAL-AI-AGENTS:END -->`.
+- **Slash Commands Dual-Naming**: Maintain both `CyrusAsha_<Name>.md` and `<name>.md` in `.agents/commands/`.
+- **PSScriptAnalyzer Clean**: Ensure zero warnings or errors before committing.
+- **Always Keep Context Compact**: Adhere to `/CyrusAsha_Compact` protocol to preserve token budget.

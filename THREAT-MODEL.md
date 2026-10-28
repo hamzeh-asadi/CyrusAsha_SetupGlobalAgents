@@ -12,7 +12,7 @@ The configurator unifies configuration files, rules, skills, and MCP servers acr
 1. **Central Root (`%USERPROFILE%\.agents`)**: The primary storage for skills, rules, sub-agents, hooks, and `mcp.json`.
 2. **Setup Scripts (`CyrusAsha_GlobalAgents.ps1`, `CyrusAsha_SetupGlobalAgents.cmd`)**: Administrative PowerShell scripts configuring Junctions and cloning repositories.
 3. **Workspace Initializer (`init-project-files.ps1`)**: Project-level script creating local `.agents` Junctions and injecting instruction files.
-4. **Third-Party Repositories (22 Repos)**: External Git sources cloned to provide modular skills and agents.
+4. **Third-Party Repositories (39 Repos)**: External Git sources cloned to provide modular skills and agents.
 5. **AI Agent Run-times**: Desktop IDEs and CLI agents interacting with workspace code and MCP servers.
 
 ---

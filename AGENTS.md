@@ -1,4 +1,4 @@
-<!-- GLOBAL-AI-AGENTS:START -->
+﻿<!-- GLOBAL-AI-AGENTS:START -->
 # Global AI Agent Knowledge & Orchestration Index
 
 CRITICAL INSTRUCTION FOR ALL AI CODING AGENTS
@@ -9,7 +9,7 @@ This workspace is connected to the central AI agent directory:
 - **User path:** `%USERPROFILE%\.agents`  (`~/.agents`)
 
 Desktop apps such as **Freebuff** and **Codebuff** do not read the user-level folder
-when a project is opened via *Open Folder*. They DO read files in the project root.
+when a project is opened via Open Folder. They DO read files in the project root.
 That is why this file exists: it points you at `.agents/`.
 
 ## Mandatory pre-execution steps
@@ -22,9 +22,10 @@ Before planning, coding, refactoring, UI/UX, SEO, or security work, silently:
 4. Adopt a specialist persona from `.agents/agents/` when the domain is specific
 5. Use MCP servers from `.agents/mcp.json`
 6. Honor slash-command playbooks in `.agents/commands/`:
-   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact`
+   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` 
+7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).
 
-If `.agents/` is missing, run inside the project root:
+If `.agents/` is missing, run in PowerShell from the project root:
 
     Initialize-AgentWorkspace
     # aliases: agents-init    ai-init    init-agents    init-needed-files
@@ -34,20 +35,20 @@ Do not ignore this index. Treat `.agents/` as the single source of truth.
 
 # 🤖 Project Operating Guide: Global AI Agent Configurator for Windows
 
-Welcome AI Assistant. You are working on **Global AI Agent Configurator for Windows** (`CyrusAsha_SetupGlobalAgents`), an enterprise-grade automation toolkit that links 19+ AI coding assistants (Antigravity, Cursor, Claude Code, Gemini CLI, Copilot, Freebuff, Windsurf, Cline, Roo, Continue, etc.) to a centralized configuration repository located at `%USERPROFILE%\.agents`.
+Welcome AI Assistant. You are working on **Global AI Agent Configurator for Windows** (`CyrusAsha_SetupGlobalAgents`), an enterprise-grade automation toolkit that links 20+ AI coding assistants (Antigravity, Free-Pi CLI, Cursor, Claude Code, Gemini CLI, Copilot, Freebuff, Windsurf, Cline, Roo, Continue, etc.) to a centralized configuration repository located at `%USERPROFILE%\.agents`.
 
 ---
 
 ## 1. Project Overview & Architecture
 
 ### Core Responsibilities
-- Synchronize 22 curated open-source AI skills, tools, and agent personas into `%USERPROFILE%\.agents`.
-- Establish zero-storage NTFS Directory Junctions from AI editor home directories (`.cursor`, `.claude`, `.gemini`, etc.) to central `.agents`.
-- Provide non-destructive project workspace initializers (`Initialize-AgentWorkspace`) via PowerShell profiles.
-- Enforce unified slash commands (`/CyrusAsha_*`) and active governance files (`SECURITY.md`, `AGENTS.md`, `THREAT-MODEL.md`, `SECURITY-CHECKLIST.md`).
+- Synchronize 39 curated open-source AI skills, tools, and agent personas into `%USERPROFILE%\.agents`.
+- Establish zero-storage NTFS Directory Junctions from AI editor home directories (`.cursor`, `.claude`, `.gemini`, `.free-pi`, etc.) to central `.agents`.
+- Provide non-destructive project workspace initializers (`Initialize-AgentWorkspace`) via PowerShell profiles with automated stale-junction repair across OS reinstalls.
+- Enforce unified slash commands (`/CyrusAsha_*`) and active governance files (`SECURITY.md`, `AGENTS.md`, `THREAT-MODEL.md`, `SECURITY-CHECKLIST.md`, `knowledge.md`).
 
 ### File Tree & Responsibilities
-- `CyrusAsha_GlobalAgents.ps1`: Primary orchestrator. Configures folders, clones 22 repositories, creates junctions, installs slash commands, and updates PowerShell profiles.
+- `CyrusAsha_GlobalAgents.ps1`: Primary orchestrator. Configures folders, clones 39 repositories, creates junctions, installs slash commands, and updates PowerShell profiles.
 - `CyrusAsha_SetupGlobalAgents.cmd`: One-click Windows CMD launcher. Automatically unblocks script and runs with bypass execution policy.
 - `init-project-files.ps1`: Project-level workspace initializer script providing `Initialize-AgentWorkspace` and aliases (`agents-init`, `ai-init`, `init-agents`, `init-needed-files`).
 - `.agents/`: NTFS Directory Junction pointing to `%USERPROFILE%\.agents` (occupies 0 bytes on project drive).
@@ -57,6 +58,7 @@ Welcome AI Assistant. You are working on **Global AI Agent Configurator for Wind
 - `CONTRIBUTING.md`: Guidelines for community contributions.
 - `LICENSE`: Open-source MIT License.
 - `.env.example`: Safe configuration template for MCP API tokens.
+- `AI_Tool_Directory_v2.md`: Comprehensive reference directory of all 54+ tools, skills, and agents.
 
 ---
 
@@ -72,9 +74,10 @@ When creating or modifying code in this repository, strictly adhere to the follo
 - Never overwrite entire user files. Use regex-based block replacement bounded by `<!-- GLOBAL-AI-AGENTS:START -->` and `<!-- GLOBAL-AI-AGENTS:END -->` (or `# >>> GLOBAL-AI-AGENTS-START >>>`).
 - Any user content outside delimiters must be preserved verbatim.
 
-### Rule 3: NTFS Junction Safety
+### Rule 3: NTFS Junction Safety & OS Reinstall Resilience
 - Always create folder links using `ItemType Junction` (or `mklink /J`).
-- Never delete a junction using recursive delete commands (`Remove-Item -Recurse`), as this may erase the target central repository. Use `rmdir <link>` in CMD or non-recursive removal.
+- Never delete a junction using recursive delete commands (`Remove-Item -Recurse`), as this may erase the target central repository. Use `rmdir <link>` in CMD.
+- When inspecting junctions, verify target validity and accessibility. If broken or pointing to a previous Windows installation profile, cleanly remove and re-point the junction.
 
 ### Rule 4: Slash Command Dual Naming
 - Whenever defining or updating custom slash commands, create both:

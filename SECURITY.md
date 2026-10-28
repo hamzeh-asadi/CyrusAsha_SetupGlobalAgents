@@ -47,5 +47,5 @@ This project manages multi-agent configurations, Windows Junctions, and MCP serv
 - `.gitignore` is configured to prevent committing Junction targets or contents to Git.
 
 ### 4. Upstream Repository Sourcing
-- When syncing external skill and agent repositories (the 22 curated open-source tools), shallow clones (`--depth 1`) are fetched from verified GitHub repositories.
+- When syncing external skill and agent repositories (the 39 curated open-source tools), shallow clones (`--depth 1`) are fetched from verified GitHub repositories.
 - Periodic code audits should be performed on downloaded skills before executing external tools or prompts.

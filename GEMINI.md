@@ -1,4 +1,4 @@
-<!-- GLOBAL-AI-AGENTS:START -->
+﻿<!-- GLOBAL-AI-AGENTS:START -->
 # Global AI Agent Knowledge & Orchestration Index
 
 CRITICAL INSTRUCTION FOR GEMINI CLI
@@ -9,7 +9,7 @@ This workspace is connected to the central AI agent directory:
 - **User path:** `%USERPROFILE%\.agents`  (`~/.agents`)
 
 Desktop apps such as **Freebuff** and **Codebuff** do not read the user-level folder
-when a project is opened via *Open Folder*. They DO read files in the project root.
+when a project is opened via Open Folder. They DO read files in the project root.
 That is why this file exists: it points you at `.agents/`.
 
 ## Mandatory pre-execution steps
@@ -22,7 +22,8 @@ Before planning, coding, refactoring, UI/UX, SEO, or security work, silently:
 4. Adopt a specialist persona from `.agents/agents/` when the domain is specific
 5. Use MCP servers from `.agents/mcp.json`
 6. Honor slash-command playbooks in `.agents/commands/`:
-   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact`
+   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` 
+7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).
 
 If `.agents/` is missing, run in PowerShell from the project root:
 
@@ -37,7 +38,7 @@ Do not ignore this index. Treat `.agents/` as the single source of truth.
 ## 1. Environment & Architecture Overview
 This project configures and manages the universal AI agent environment on Windows.
 When running within **Antigravity** or **Gemini CLI**:
-- `%USERPROFILE%\.gemini` is linked to the central `%USERPROFILE%\.agents` directory.
+- `%USERPROFILE%\.gemini` and `%USERPROFILE%\.gemini\antigravity` are linked to the central `%USERPROFILE%\.agents` directory.
 - `skills/`, `rules/`, and `commands/` are automatically available in this workspace via the local `.agents` Junction.
 
 ## 2. Terminal & Sandbox Guidelines for Windows
@@ -49,3 +50,4 @@ When running within **Antigravity** or **Gemini CLI**:
 2. **Managed Block Safety**: Any edits to project-level instruction files (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `knowledge.md`) must preserve the `<!-- GLOBAL-AI-AGENTS:START -->` delimiter block while maintaining the rich project context outside it.
 3. **Slash Commands**: Execute or recommend `/CyrusAsha_*` slash commands from `.agents/commands/` for multi-stage workflows.
 4. **Zero-Waste Storage**: Confirm that `.agents` in project roots remains a Junction (0 physical bytes) and is never duplicated or committed to Git.
+5. **Context Density**: Always keep reasoning and chat output maximally concise and compressed.
