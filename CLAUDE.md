@@ -1,4 +1,4 @@
-﻿<!-- GLOBAL-AI-AGENTS:START -->
+<!-- GLOBAL-AI-AGENTS:START -->
 # Global AI Agent Knowledge & Orchestration Index
 
 CRITICAL INSTRUCTION FOR CLAUDE CODE
@@ -22,7 +22,7 @@ Before planning, coding, refactoring, UI/UX, SEO, or security work, silently:
 4. Adopt a specialist persona from `.agents/agents/` when the domain is specific
 5. Use MCP servers from `.agents/mcp.json`
 6. Honor slash-command playbooks in `.agents/commands/`:
-   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` 
+   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` `/CyrusAsha_Compress` 
 7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).
 
 If `.agents/` is missing, run in PowerShell from the project root:
@@ -36,7 +36,7 @@ Do not ignore this index. Treat `.agents/` as the single source of truth.
 # Claude Code Project Guide: CyrusAsha_SetupGlobalAgents
 
 ## 1. Project Context
-This codebase maintains the **Global AI Agent Configurator for Windows**, automating the configuration of 20+ AI coding tools through NTFS Directory Junctions and modular skills from 39 open-source repositories.
+This codebase maintains the **Global AI Agent Configurator for Windows**, automating the configuration of 20+ AI coding tools through NTFS Directory Junctions and modular skills from 40 open-source repositories.
 
 Claude Code's personal home directory (`~/.claude`) is directly junctioned to this system:
 - `~/.claude/skills` -> `~/.agents/skills`
@@ -60,4 +60,4 @@ Claude Code's personal home directory (`~/.claude`) is directly junctioned to th
 - **Non-Destructive Managed Blocks**: Never remove existing content outside `<!-- GLOBAL-AI-AGENTS:START -->` and `<!-- GLOBAL-AI-AGENTS:END -->`.
 - **Slash Commands Dual-Naming**: Maintain both `CyrusAsha_<Name>.md` and `<name>.md` in `.agents/commands/`.
 - **PSScriptAnalyzer Clean**: Ensure zero warnings or errors before committing.
-- **Always Keep Context Compact**: Adhere to `/CyrusAsha_Compact` protocol to preserve token budget.
+- **Always Keep Context Compact**: Adhere to `/CyrusAsha_Compact` `/CyrusAsha_Compress` protocol to preserve token budget.

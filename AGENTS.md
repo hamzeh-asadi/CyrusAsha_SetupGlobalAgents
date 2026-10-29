@@ -1,4 +1,4 @@
-﻿<!-- GLOBAL-AI-AGENTS:START -->
+<!-- GLOBAL-AI-AGENTS:START -->
 # Global AI Agent Knowledge & Orchestration Index
 
 CRITICAL INSTRUCTION FOR ALL AI CODING AGENTS
@@ -22,7 +22,7 @@ Before planning, coding, refactoring, UI/UX, SEO, or security work, silently:
 4. Adopt a specialist persona from `.agents/agents/` when the domain is specific
 5. Use MCP servers from `.agents/mcp.json`
 6. Honor slash-command playbooks in `.agents/commands/`:
-   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` 
+   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` `/CyrusAsha_Compress` 
 7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).
 
 If `.agents/` is missing, run in PowerShell from the project root:
@@ -42,13 +42,13 @@ Welcome AI Assistant. You are working on **Global AI Agent Configurator for Wind
 ## 1. Project Overview & Architecture
 
 ### Core Responsibilities
-- Synchronize 39 curated open-source AI skills, tools, and agent personas into `%USERPROFILE%\.agents`.
+- Synchronize 40 curated open-source AI skills, tools, and agent personas into `%USERPROFILE%\.agents`.
 - Establish zero-storage NTFS Directory Junctions from AI editor home directories (`.cursor`, `.claude`, `.gemini`, `.free-pi`, etc.) to central `.agents`.
 - Provide non-destructive project workspace initializers (`Initialize-AgentWorkspace`) via PowerShell profiles with automated stale-junction repair across OS reinstalls.
 - Enforce unified slash commands (`/CyrusAsha_*`) and active governance files (`SECURITY.md`, `AGENTS.md`, `THREAT-MODEL.md`, `SECURITY-CHECKLIST.md`, `knowledge.md`).
 
 ### File Tree & Responsibilities
-- `CyrusAsha_GlobalAgents.ps1`: Primary orchestrator. Configures folders, clones 39 repositories, creates junctions, installs slash commands, and updates PowerShell profiles.
+- `CyrusAsha_GlobalAgents.ps1`: Primary orchestrator. Configures folders, clones 40 repositories, creates junctions, installs slash commands, and updates PowerShell profiles.
 - `CyrusAsha_SetupGlobalAgents.cmd`: One-click Windows CMD launcher. Automatically unblocks script and runs with bypass execution policy.
 - `init-project-files.ps1`: Project-level workspace initializer script providing `Initialize-AgentWorkspace` and aliases (`agents-init`, `ai-init`, `init-agents`, `init-needed-files`).
 - `.agents/`: NTFS Directory Junction pointing to `%USERPROFILE%\.agents` (occupies 0 bytes on project drive).
@@ -92,6 +92,11 @@ When creating or modifying code in this repository, strictly adhere to the follo
 ### Rule 6: Dual PowerShell Compatibility
 - All code must run on both **Windows PowerShell 5.1 (Desktop Edition)** and **PowerShell 7+ (Core)**.
 - Avoid PowerShell 7-only syntax (e.g., ternary operator `? :` or pipeline chain operators `&&` / `||` inside scripts intended for 5.1).
+
+### Rule 7: Mandatory Chat and Command Compression
+- All AI coding agents must practice aggressive token economy and high information density.
+- Never output conversational greetings, pleasantries, or fluff. Provide concise diffs and telegraphic explanations.
+- Streamline command executions and proactively trigger `/CyrusAsha_Compact` before context capacity exceeds 70%.
 
 ---
 

@@ -8,13 +8,13 @@
 [![PowerShell](https://img.shields.io/badge/Shell-PowerShell%205.1%2B%20%7C%207%2B-5391FE?logo=powershell)](https://microsoft.com/powershell)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Supported Agents](https://img.shields.io/badge/Agents-20%2B%20AI%20IDEs%20%26%20CLIs-success)]()
-[![Integrated Repos](https://img.shields.io/badge/Repos-39%20Open--Source-blueviolet)]()
+[![Integrated Repos](https://img.shields.io/badge/Repos-40%20Open--Source-blueviolet)]()
 
 ---
 
 یک اسکریپت جامع، خودکار و یکپارچه **PowerShell (نسخه ۱.۱.۰ - Enterprise Edition)** برای ساخت و پیکربندی پوشه مرجع مرکزی `C:\Users\<Username>\.agents` در ویندوز.
 
-این پروژه تمامی **اسکیل‌ها (Skills)**، **سرورهای MCP**، **قوانین خودکار (Rules)**، **دستورات اسلش (Slash Commands)**، **هوک‌ها (Hooks)** و **ایجنت‌های تخصصی (Sub-Agents)** را از **۳۹ مخزن برتر متن‌باز دنیا** یک‌جا دانلود و تنظیم کرده و از طریق **لینک پوشه (Junction / Symbolic Link)** به بیش از ۲۰ ایجنت هوش مصنوعی روی سیستم شما متصل می‌کند.
+این پروژه تمامی **اسکیل‌ها (Skills)**، **سرورهای MCP**، **قوانین خودکار (Rules)**، **دستورات اسلش (Slash Commands)**، **هوک‌ها (Hooks)** و **ایجنت‌های تخصصی (Sub-Agents)** را از **۴۰ مخزن برتر متن‌باز دنیا** یک‌جا دانلود و تنظیم کرده و از طریق **لینک پوشه (Junction / Symbolic Link)** به بیش از ۲۰ ایجنت هوش مصنوعی روی سیستم شما متصل می‌کند.
 
 ---
 
@@ -145,11 +145,11 @@ This means **every skill installed once in `.agents\skills\` is instantly availa
 
 ---
 
-## 📦 Integrated Repositories (39 Open-Source Tools) / فهرست ۳۹ مخزن ادغام‌شده
+## 📦 Integrated Repositories (40 Open-Source Tools) / فهرست ۴۰ مخزن ادغام‌شده
 
-The script automatically clones (or updates via `git pull` on subsequent runs) the following 39 repositories and places their contents into the central `.agents` folder:
+The script automatically clones (or updates via `git pull` on subsequent runs) the following 40 repositories and places their contents into the central `.agents` folder:
 
-این اسکریپت در هنگام اجرا، ۳۹ مخزن زیر را به صورت خودکار کلون (یا در اجراهای بعدی `git pull` و آپدیت) کرده و محتوای آن‌ها را در پوشه مرکزی `.agents` جای‌گذاری می‌کند:
+این اسکریپت در هنگام اجرا، ۴۰ مخزن زیر را به صورت خودکار کلون (یا در اجراهای بعدی `git pull` و آپدیت) کرده و محتوای آن‌ها را در پوشه مرکزی `.agents` جای‌گذاری می‌کند:
 
 ### 🧩 Frameworks, Harnesses & Multi-Agent Systems / فریم‌ورک‌ها، هارنس‌ها و سیستم‌های چند-ایجنتی
 
@@ -210,6 +210,7 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | `Agent-Memory` | [Threesided-Studios/Agent-Memory](https://github.com/Threesided-Studios/Agent-Memory.git) | Persistent memory system combining keyword search, vector search, and knowledge graph for agents. |
 | `OpenViking` | [volcengine/OpenViking](https://github.com/volcengine/OpenViking.git) | Self-completing context database for memory integration, RAG systems, and agent skills. |
 | `mex` *(جدید)* | [mex-memory/mex](https://github.com/mex-memory/mex.git) | Git-native team & project memory shared across engineering teams and coding agents. |
+| `codebase-memory-mcp` *(جدید v3)* | [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp.git) | Local code intelligence & structural knowledge graph for 150+ languages; reduces token consumption up to 99%. |
 
 ### 🌐 Browser & Web Automation / اتوماسیون مرورگر، وب‌گردی و اسکرپینگ
 
@@ -237,11 +238,11 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 
 ---
 
-## 🔌 MCP Servers Configured in `mcp.json` (7 Servers) / سرورهای MCP پیکربندی‌شده در `mcp.json` (۷ سرور)
+## 🔌 MCP Servers Configured in `mcp.json` (8 Servers) / سرورهای MCP پیکربندی‌شده در `mcp.json` (۸ سرور)
 
-The file `C:\Users\<Username>\.agents\mcp.json` is automatically created with the following 7 useful servers and linked to all agents:
+The file `C:\Users\<Username>\.agents\mcp.json` is automatically created with the following 8 useful servers and linked to all agents:
 
-فایل `C:\Users\<Username>\.agents\mcp.json` به صورت خودکار با ۷ سرور کاربردی زیر ساخته و به تمام ایجنت‌ها لینک می‌شود:
+فایل `C:\Users\<Username>\.agents\mcp.json` به صورت خودکار با ۸ سرور کاربردی زیر ساخته و به تمام ایجنت‌ها لینک می‌شود:
 
 | # | MCP Server | Package / Command | Main Use / کاربرد اصلی |
 |---|:---|:---|:---|
@@ -252,10 +253,32 @@ The file `C:\Users\<Username>\.agents\mcp.json` is automatically created with th
 | 5 | DuckDB | `@modelcontextprotocol/server-duckdb` | Fast data analysis and SQL queries on local database (`C:\Data\local_database.duckdb`). |
 | 6 | Google Search Console | `@aminforou/mcp-gsc` | Real SEO data analysis, keywords, clicks, and impressions directly from agent chat. |
 | 7 | Playwright | `@modelcontextprotocol/server-playwright` | Browser automation, End-to-End testing, and live UI inspection by the agent. |
+| 8 | Codebase Memory *(جدید)* | `codebase-memory-mcp` | Local code intelligence & structural knowledge graph for 150+ languages; reduces tokens by up to 99%. |
 
 > **Note:** The `mcp.json` file is created **only once** and your API tokens/keys are **never overwritten** on re-runs.
 
 > **نکته:** فایل `mcp.json` فقط **یک‌بار** ساخته می‌شود و توکن‌ها/کلیدهای API شما هرگز بازنویسی نمی‌شوند.
+
+### 💻 Fast CLI Installation Commands for MCPs / دستورات نصب سریع سرورهای MCP در ترمینال
+
+اگر می‌خواهید سرورهای MCP را مستقیماً از طریق CLI به کلاینت‌های سازگار مانند **Claude Code** یا **Antigravity** اضافه کنید:
+
+```powershell
+# ۱. سرور Codebase Memory (ساخت خودکار گراف ساختاری و هوش کد محلی)
+claude mcp add codebase-memory -- npx -y codebase-memory-mcp
+
+# ۲. سرور Playwright (اتوماسیون مرورگر و تست UI)
+claude mcp add playwright -- npx -y @modelcontextprotocol/server-playwright
+
+# ۳. سرور Google Search Console (اتصال به سرچ کنسول گوگل)
+claude mcp add gsc -- npx -y @aminforou/mcp-gsc
+
+# ۴. سرور OpenSEO (تحلیل بک‌لینک و کلمات کلیدی)
+claude mcp add --transport http --scope user openseo https://app.openseo.so/mcp
+
+# ۵. سرور GitHub
+claude mcp add github -- npx -y @modelcontextprotocol/server-github
+```
 
 ---
 
@@ -263,14 +286,15 @@ The file `C:\Users\<Username>\.agents\mcp.json` is automatically created with th
 
 ### 🧠 Global Rules (`~/.agents/rules/` / قوانین سرتاسری)
 
-* **`00-auto-orchestrator.md`** (Autonomous Orchestration & Discovery Protocol): Named with `00-` prefix so it is always the first rule the agent reads. Its duty is to automatically check the `skills` folder, select a persona from `agents`, comply with rules, proactively use `mcp.json` tools, and manage context automatically (when context exceeds 75%) without manual user command.
+* **`00-auto-orchestrator.md`** (Autonomous Orchestration & Discovery Protocol): Named with `00-` prefix so it is always the first rule the agent reads. It automatically loads skills, adopts expert personas, leverages MCP tools, and enforces continuous chat and command compression.
+* **`compress-communication.md`** (Mandatory Chat & Command Compression Protocol): Mandates high-density, zero-fluff, telegraphic technical output from all agents. Commands and responses are compressed to preserve context budget and reduce token latency.
 * **`security-architect.md`** (Senior Security & Software Architecture Lead): Obliges the agent to inspect the code repository and audit or generate the 5 key security and governance files (`SECURITY.md`, `AGENTS.md`, `.env.example`, `THREAT-MODEL.md`, `SECURITY-CHECKLIST.md`).
 
 ### 📜 Slash Commands (`~/.agents/commands/` / دستورات اسلش)
 
-You can use these 8 commands in the chat of any of your agents:
+You can use these 9 commands in the chat of any of your agents:
 
-در محیط چت هر کدام از ایجنت‌های خود می‌توانید از این ۸ دستور استفاده کنید:
+در محیط چت هر کدام از ایجنت‌های خود می‌توانید از این ۹ دستور استفاده کنید:
 
 | Slash Command | Function / عملکرد |
 |:---|:---|
@@ -280,6 +304,7 @@ You can use these 8 commands in the chat of any of your agents:
 | `/CyrusAsha_Agents` | Scans specialist personas in `~/.agents/agents/`, selects the best expert (e.g., database architect or frontend specialist), and delegates the task. |
 | `/CyrusAsha_Audit-Security` | Performs a full security audit on the repository, provides a status table, and creates/completes the 5 standard files. |
 | `/CyrusAsha_Compact` | Runs `pre-compact.ps1` hook, summarizes session state, saves checkpoint to `~/.agents/session-state.md`, and frees context window. |
+| `/CyrusAsha_Compress` | Forces immediate compression of context, removes chat fluff and pleasantries, and enforces compact diff-only mode. |
 | `/CyrusAsha_Hooks` | Scans, checks status, and manually tests lifecycle scripts in `~/.agents/hooks/`. |
 | `/CyrusAsha_Commands` | Displays a cheat-sheet table of all available slash commands and suggests the best command for the current task. |
 
@@ -291,6 +316,7 @@ You can use these 8 commands in the chat of any of your agents:
 | **`/CyrusAsha_Agents`** | اسکن شخصیت‌های تخصصی در `~/.agents/agents/`، انتخاب بهترین متخصص (مثلاً معمار دیتابیس یا متخصص فرانت‌اند) و واگذاری تسک به او. |
 | **`/CyrusAsha_Audit-Security`** | اجرای ممیزی کامل امنیتی روی پروژه، ارائه جدول وضعیت و ساخت/تکمیل ۵ فایل استاندارد (`SECURITY.md`, `AGENTS.md`, `.env.example`, `THREAT-MODEL.md`, `SECURITY-CHECKLIST.md`). |
 | **`/CyrusAsha_Compact`** | اجرای هوک `pre-compact.ps1`، خلاصه‌سازی وضعیت جلسه، ذخیره چک‌پوینت در `~/.agents/session-state.md` و آزادسازی حافظه چت (Context Window). |
+| **`/CyrusAsha_Compress`** | فشرده‌سازی فوری کانتکست چت، حذف احوال‌پرسی‌ها و زوائد متنی، و وادار کردن ایجنت به پاسخ‌های کاملاً تلگرافی، ساختاریافته و مبتنی بر diff. |
 | **`/CyrusAsha_Hooks`** | اسکن، بررسی وضعیت و تست دستی اسکریپت‌های چرخه حیات موجود در `~/.agents/hooks/`. |
 | **`/CyrusAsha_Commands`** | نمایش جدول راهنما (Cheat-Sheet) از تمامی دستورات اسلش موجود و پیشنهاد بهترین دستور برای تسک فعلی. |
 
@@ -304,7 +330,7 @@ Make sure the following tools are installed on your Windows:
 
 1. **Windows 10 / 11**
 2. **PowerShell** (version 5.1 or 7+)
-3. **Git** (installed and available in system `PATH` for cloning 39 repositories)
+3. **Git** (installed and available in system `PATH` for cloning 40 repositories)
 4. **Node.js (v18+)** (for `npx` command to run MCP servers)
 5. **Python (v3.10+)** (recommended for some skills and scraping/auditing tools)
 
@@ -457,9 +483,9 @@ Close and reopen your coding environments or agent terminals (**Freebuff, Codebu
 
 ### 3. Periodic Ecosystem Update / بروزرسانی دوره‌ای کل اکوسیستم
 
-Whenever you want to update all 39 repositories and skills to the latest GitHub versions, simply run `CyrusAsha_GlobalAgents.ps1` again. The script does not touch your `mcp.json` or tokens; it only `git pull`s and updates the repositories.
+Whenever you want to update all 40 repositories and skills to the latest GitHub versions, simply run `CyrusAsha_GlobalAgents.ps1` again. The script does not touch your `mcp.json` or tokens; it only `git pull`s and updates the repositories.
 
-هر زمان که خواستید تمامی ۲۲ مخزن و اسکیل‌ها به آخرین نسخه گیت‌هاب بروزرسانی شوند، کافی است مجدداً اسکریپت `CyrusAsha_GlobalAgents.ps1` را اجرا کنید. اسکریپت به فایل `mcp.json` و توکن‌های شما دست نمی‌زند و صرفاً مخازن را `git pull` و آپدیت می‌کند.
+هر زمان که خواستید تمامی ۴۰ مخزن و اسکیل‌ها به آخرین نسخه گیت‌هاب بروزرسانی شوند، کافی است مجدداً اسکریپت `CyrusAsha_GlobalAgents.ps1` را اجرا کنید. اسکریپت به فایل `mcp.json` و توکن‌های شما دست نمی‌زند و صرفاً مخازن را `git pull` و آپدیت می‌کند.
 
 ---
 

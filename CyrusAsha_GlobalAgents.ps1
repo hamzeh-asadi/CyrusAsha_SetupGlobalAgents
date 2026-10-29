@@ -185,7 +185,7 @@ Before planning, coding, refactoring, UI/UX, SEO, or security work, silently:
 4. Adopt a specialist persona from `.agents/agents/` when the domain is specific
 5. Use MCP servers from `.agents/mcp.json`
 6. Honor slash-command playbooks in `.agents/commands/`:
-   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact`
+   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` `/CyrusAsha_Compress`
 7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).
 
 If `.agents/` is missing, run inside the project root:
@@ -213,13 +213,34 @@ Set-Content -Path $AutoRuleFile -Encoding UTF8 -Value @(
     '- **Rule Enforcement**: Always comply with active architectural and security constraints in `~/.agents/rules/`.',
     '- **MCP Utilization**: Proactively use configured MCP tools in `mcp.json` whenever external data or file manipulation is needed.',
     '',
-    '## 2. Context Window Management:',
-    '- Monitor conversation length. If context exceeds 75% capacity or a major milestone completes, automatically follow the `/CyrusAsha_Compact` protocol and log progress to `~/.agents/session-state.md`. Always keep chat output maximally dense and compact.',
+    '## 2. Mandatory Continuous Compression & Context Optimization:',
+    '- **Chat Output Compression**: Always keep responses maximally dense, compact, and high-signal. Eliminate pleasantries, conversational filler, redundant greetings, and long prose. Prioritize telegraphic summaries, tables, and exact code diffs.',
+    '- **Command Compression**: Consolidate multi-step operations into streamlined, low-overhead commands. Avoid chatty polling and redundant tool invocations.',
+    '- **Autonomous Context Compacting**: Continuously monitor context usage. If context consumption exceeds 70% or upon concluding any substantial milestone, autonomously trigger `/CyrusAsha_Compact` protocol to summarize progress, flush session checkpoints to `~/.agents/session-state.md`, and prevent context degradation.',
     '',
     '## 3. Self-Verification:',
     '- Before finalizing code changes, verify compliance against loaded skills, linter rules, and security checklists.'
 ) | Out-Null
 Write-Host "[OK] Rule: $AutoRuleFile" -ForegroundColor Cyan
+
+$CompressRuleFile = Join-Path $RulesDir "compress-communication.md"
+Set-Content -Path $CompressRuleFile -Encoding UTF8 -Value @(
+    '# Rule: Mandatory Chat and Command Compression Protocol',
+    'Description: Enforces strict brevity, high information density, streamlined command execution, and proactive context compaction across all AI agents.',
+    '',
+    '## 1. Chat Response Compression:',
+    '- **Zero Fluff**: Never output conversational greetings, pleasantries, filler phrases, or unsolicited echoing of user instructions.',
+    '- **High Information Density**: Present technical reasoning with telegraphic brevity, bullet points, and concise tables.',
+    '- **Diff-First Answers**: When modifying code, show only the modified diff or relevant snippets instead of reprinting full unchanged files.',
+    '',
+    '## 2. Command Execution Compression:',
+    '- **Streamlined Tool Invocations**: Chain and combine related commands where practical rather than executing multiple fragmented steps.',
+    '- **Minimal Noise**: Use quiet or low-verbosity command flags where appropriate to prevent log pollution in context.',
+    '',
+    '## 3. Proactive Context Compaction:',
+    '- Whenever conversations expand or complete milestone tasks, execute the `/CyrusAsha_Compact` procedure to persist crucial state to `~/.agents/session-state.md` and keep working memory lean.'
+) | Out-Null
+Write-Host "[OK] Rule: $CompressRuleFile" -ForegroundColor Cyan
 
 $SecurityRuleFile = Join-Path $RulesDir "security-architect.md"
 Set-Content -Path $SecurityRuleFile -Encoding UTF8 -Value @(
@@ -401,6 +422,18 @@ function Install-SlashCommands {
             )
         },
         @{
+            Names = @("CyrusAsha_Compress.md", "compress.md")
+            Content = @(
+                '# Command: /CyrusAsha_Compress (alias: /compress)',
+                'Description: Force immediate compression of conversation history, strip conversational fluff, and enforce maximal brevity and token efficiency.',
+                '',
+                '## Protocol:',
+                '1. Strip conversational filler, greetings, and repetitive outputs from current context.',
+                '2. Condense remaining active task objectives into dense bullet points.',
+                '3. Enforce minimal token output mode and compact diff-only format for subsequent responses.'
+            )
+        },
+        @{
             Names = @("CyrusAsha_Hooks.md", "hooks.md")
             Content = @(
                 '# Command: /CyrusAsha_Hooks (alias: /hooks)',
@@ -427,6 +460,7 @@ function Install-SlashCommands {
                 '| `/CyrusAsha_Agents` | `/agents` | Delegate tasks to specialist sub-agents |',
                 '| `/CyrusAsha_Audit-Security` | `/audit-security` | Security audit & 5 governance files |',
                 '| `/CyrusAsha_Compact` | `/compact` | Save checkpoint & compact context |',
+                '| `/CyrusAsha_Compress` | `/compress` | Strip fluff & force concise responses |',
                 '| `/CyrusAsha_Hooks` | `/hooks` | Inspect & run lifecycle hooks |',
                 '| `/CyrusAsha_Commands` | `/commands` | Display cheat-sheet & recommendations |'
             )
@@ -498,6 +532,10 @@ if (-not (Test-Path -LiteralPath $McpFile)) {
     "playwright": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-playwright"]
+    },
+    "codebase-memory": {
+      "command": "npx",
+      "args": ["-y", "codebase-memory-mcp"]
     }
   }
 }
@@ -505,7 +543,21 @@ if (-not (Test-Path -LiteralPath $McpFile)) {
     Set-Content -Path $McpFile -Value $DefaultMcp -Encoding UTF8
     Write-Host "[OK] Created central mcp.json (fill in your tokens)." -ForegroundColor Cyan
 } else {
-    Write-Host "[SKIP] mcp.json already exists - left untouched." -ForegroundColor DarkYellow
+    try {
+        $mcpContent = Get-Content -LiteralPath $McpFile -Raw -Encoding UTF8
+        if ($mcpContent -notmatch '"codebase-memory"') {
+            $mcpObj = $mcpContent | ConvertFrom-Json
+            if ($mcpObj.mcpServers) {
+                $mcpObj.mcpServers | Add-Member -NotePropertyName "codebase-memory" -NotePropertyValue ([PSCustomObject]@{
+                    command = "npx"
+                    args    = @("-y", "codebase-memory-mcp")
+                }) -ErrorAction SilentlyContinue
+                $mcpObj | ConvertTo-Json -Depth 10 | Set-Content -Path $McpFile -Encoding UTF8
+                Write-Host "[OK] Added codebase-memory to existing mcp.json" -ForegroundColor Cyan
+            }
+        }
+    } catch {}
+    Write-Host "[SKIP] mcp.json already exists - user secrets preserved." -ForegroundColor DarkYellow
 }
 
 # ------------------------------------------------------------------------------
@@ -555,8 +607,9 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
         # 4. Harness & Performance Optimization (New)
         @{ Name = "ECC";                            Url = "https://github.com/affaan-m/ECC.git" },
 
-        # 5. Team & Git-Backed Memory (New)
+        # 5. Team & Git-Backed Memory & Local Code Intelligence (New)
         @{ Name = "mex";                            Url = "https://github.com/mex-memory/mex.git" },
+        @{ Name = "codebase-memory-mcp";            Url = "https://github.com/DeusData/codebase-memory-mcp.git" },
 
         # 6. Official Ecosystem Skills (New)
         @{ Name = "skills-nvidia";                  Url = "https://github.com/NVIDIA/skills.git" },
@@ -896,7 +949,7 @@ function Initialize-AgentWorkspace {
             '4. Adopt a specialist persona from `.agents/agents/` when the domain is specific',
             '5. Use MCP servers from `.agents/mcp.json`',
             '6. Honor slash-command playbooks in `.agents/commands/`:',
-            '   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` ',
+            '   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` `/CyrusAsha_Compress` ',
             '7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).',
             '',
             'If `.agents/` is missing, run in PowerShell from the project root:',
