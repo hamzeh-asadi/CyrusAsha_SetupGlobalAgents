@@ -25,7 +25,7 @@
 | **`superpowers`** *(جدید)* | Obra (Jesse Vincent) | [obra/superpowers](https://github.com/obra/superpowers.git) | فریم‌ورک اسکیل‌های ایجنتی با متدولوژی TDD، شاخه‌بندی مجزا با Git Worktrees و مرور کد موازی. | رایگان و متن‌باز (MIT) |
 | **`vibe-building-skills`** *(جدید)* | Sanket Patel | [sanky369/vibe-building-skills](https://github.com/sanky369/vibe-building-skills.git) | ۴۰ اسکیل ماژولار ساخت SaaS، کپی‌رایتینگ، استراتژی محصول، مارکتینگ، دارایی‌های بصری و سیستم‌های دیزاین فرانت‌اند. | رایگان و متن‌باز (MIT) |
 | **`elephant-goldfish-model`** *(جدید)* | Google | [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model.git) | فریم‌ورک متدولوژی توسعه نرم‌افزار مبتنی بر مشخصات اولیه (Spec-first) با ایجنت‌های حافظه‌دار فیل (Elephant) و بازبین‌های تازه‌نفس ماهی‌قرمز (Goldfish). | رایگان و متن‌باز (Apache 2.0) |
-| **`300-claude-skills`** *(جدید)* | Claude Community | [300 Claude Skills & Prompts (Notion)](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4) | ۴۱ اسکیل تخصصی استخراج‌شده از مخزن مهارت‌های کلود در ۸ حوزه (مهندسی نرم‌افزار، معماری، فروش، بازاریابی، رشد PLG، مالی، منابع انسانی و مدیران ارشد). | رایگان و عمومی |
+| **`CyrusAsha-Skills`** *(بسته داخلی)* | CyrusAsha Suite | [assets/CyrusAsha-Skills](assets/CyrusAsha-Skills) | مجموعه مهارت‌های بومی و اختصاصی پروژه شامل ۴۱ اسکیل استخراج‌شده از [300 Claude Skills & Prompts (Notion)](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4) در ۸ حوزه (مهندسی نرم‌افزار، معماری، فروش، بازاریابی، مالی، منابع انسانی و مدیران ارشد). | رایگان و عمومی |
 
 ---
 
@@ -33,7 +33,7 @@
 
 | نام ابزار / اسکیل | خالق / سازمان | مخزن گیت‌هاب / لینک | کاربرد و ویژگی‌های کلیدی | وضعیت قیمت / لایسنس |
 | :--- | :--- | :--- | :--- | :--- |
-| **`pre-launch-security-checklist`** *(جدید)* | AI QA Monkey, Kalit AI, Vibe-Eval | [assets/claude-skills-300/pre-launch-security-checklist](assets/claude-skills-300/pre-launch-security-checklist) | ممیزی جامع امنیتی قبل از لانچ نهایی (RLS دیتابیس، سکرت‌ها، اعتبارسنجی سمت سرور و IDOR، ریت‌لیمیتینگ، هدرهای CSP/HSTS و محافظت پرامپت هوش مصنوعی). دستور `/CyrusAsha_PreLaunch-Security`. | رایگان و متن‌باز |
+| **`pre-launch-security-checklist`** *(جدید)* | AI QA Monkey, Kalit AI, Vibe-Eval | [assets/CyrusAsha-Skills/pre-launch-security-checklist](assets/CyrusAsha-Skills/pre-launch-security-checklist) | ممیزی جامع امنیتی قبل از لانچ نهایی (RLS دیتابیس، سکرت‌ها، اعتبارسنجی سمت سرور و IDOR، ریت‌لیمیتینگ، هدرهای CSP/HSTS و محافظت پرامپت هوش مصنوعی). دستور `/CyrusAsha_PreLaunch-Security`. | رایگان و متن‌باز |
 | **`Anthropic-Cybersecurity-Skills`** | Mukul975 | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git) | ۸۱۷+ اسکیل امنیتی ساختاریافته مپ‌شده به ۶ فریم‌ورک استاندارد (MITRE ATT&CK, NIST CSF 2.0, D3FEND). | ۱۰۰٪ رایگان و متن‌باز (Apache 2.0) |
 | **`security-audit-skill`** *(جدید)* | Cloudflare | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill.git) | اسکیل رسمی ممیزی امنیت سورس‌کد با خروجی‌های ساختاریافته ماشین‌خوان و اعتبارسنجی مستقل یافته‌ها. | رایگان و متن‌باز (Apache 2.0) |
 | **`strix`** | useStrix | [usestrix/strix](https://github.com/usestrix/strix.git) | ایجنت هوشمند تست نفوذ (AI Pentester) برای شناسایی خودکار آسیب‌پذیری‌های وب و API همراه با ساخت PoC واقعی. | نسخه محلی رایگان / ابری تجاری |

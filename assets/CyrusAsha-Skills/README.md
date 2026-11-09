@@ -1,6 +1,13 @@
-# 300 Claude Skills & Prompts Collection
+# 📦 CyrusAsha-Skills Suite (مجموعه مهارت‌های بومی و گلچین‌شده CyrusAsha)
 
-این مجموعه برگرفته و استخراج‌شده از مخزن جامع مهارت‌های کلود (Claude Skills & Prompts) شامل مهارت‌های پیشرفته در حوزه‌های فنی، مهندسی، محصول، فروش، بازاریابی، مالی، منابع انسانی و مدیریت ارشد است.
+این بسته شامل مهارت‌های اختصاصی، پیش‌فرض و گلچین‌شده پروژه `CyrusAsha_SetupGlobalAgents` است. بخش عمده این بسته برگرفته و استخراج‌شده از منبع مرجع [300 Claude Skills & Prompts | Notion](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4) همراه با مهارت‌های بومی امنیتی پروژه (مانند `pre-launch-security-checklist`) می‌باشد.
+
+---
+
+## 🔒 0. امنیت و ممیزی پروداکشن (Security & Pre-Launch)
+- **`pre-launch-security-checklist`**: ممیزی جامع امنیتی قبل از لانچ نهایی (RLS دیتابیس، سکرت‌ها، اعتبارسنجی سمت سرور و IDOR، ریت‌لیمیتینگ، هدرهای CSP/HSTS و محافظت پرامپت هوش مصنوعی). دستور اجرایی: `/CyrusAsha_PreLaunch-Security` (نام مستعار: `/prelaunch-security`).
+
+---
 
 ## 🗂️ دسته‌بندی مهارت‌ها (Categories)
 

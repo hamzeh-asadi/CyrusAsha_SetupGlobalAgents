@@ -739,17 +739,17 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
 }
 
 # ------------------------------------------------------------------------------
-# 8.2. Sync bundled 300 Claude Skills & Prompts from assets
+# 8.2. Sync bundled CyrusAsha-Skills from assets
 # ------------------------------------------------------------------------------
-$BundledSkills = Join-Path $PSScriptRoot "assets\claude-skills-300"
+$BundledSkills = Join-Path $PSScriptRoot "assets\CyrusAsha-Skills"
 if ($PSScriptRoot -and (Test-Path -LiteralPath $BundledSkills)) {
-    Write-Host "`n[BUNDLED] Installing bundled 300 Claude Skills & Prompts into ~/.agents..." -ForegroundColor Yellow
+    Write-Host "`n[BUNDLED] Installing bundled CyrusAsha-Skills into ~/.agents..." -ForegroundColor Yellow
     Get-ChildItem -Path $BundledSkills -Directory -ErrorAction SilentlyContinue | ForEach-Object {
         $targetSkill = Join-Path $SkillsDir $_.Name
         New-Item -ItemType Directory -Force -Path $targetSkill | Out-Null
         Copy-Item -Recurse -Force -Path "$($_.FullName)\*" -Destination $targetSkill -ErrorAction SilentlyContinue
     }
-    Write-Host "[OK] 300 Claude Skills & Prompts installed." -ForegroundColor Cyan
+    Write-Host "[OK] CyrusAsha-Skills (bundled curated suite) installed." -ForegroundColor Cyan
 }
 
 # ------------------------------------------------------------------------------

@@ -33,7 +33,7 @@
 * **`elephant-goldfish-model` (Google):**
   * **کاربرد:** پلاگین و الگوی توسعه نرم‌افزار با ایجنت‌ها مبتنی بر مشخصات فنی (Spec-first) با ایجنت‌های حافظه‌دار فیل (Elephant) و بازبین‌های تازه‌نفس ماهی‌قرمز (Goldfish).
   * **وضعیت قیمت:** **رایگان و متن‌باز (Apache 2.0)**.
-* **`300 Claude Skills & Prompts` (مجموعه استخراج‌شده - بسته داخلی):**
+* **`CyrusAsha-Skills` (مجموعه استخراج‌شده و مهارت‌های بومی - بسته داخلی `assets/CyrusAsha-Skills`):**
   * **منبع مرجع:** [300 Claude Skills & Prompts | Notion](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4)
   * **کاربرد:** ۴۱ اسکیل تخصصی در حوزه‌های مهندسی نرم‌افزار (`prd-reviewer`, `code-reviewer`, `architecture-advisor`, `debugging-partner`), فروش پیشرفته (`claude-sales-mastery`), بازاریابی، رشد PLG، تحلیل مالی و مدیران ارشد.
   * **وضعیت قیمت:** **رایگان و عمومی (پوشش کامل)**.

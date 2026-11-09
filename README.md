@@ -174,8 +174,8 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | `superpowers` *(جدید)* | [obra/superpowers](https://github.com/obra/superpowers.git) | Agentic skills framework with TDD methodology, isolated Git worktrees, and parallel review agents. |
 | `vibe-building-skills` *(جدید)* | [sanky369/vibe-building-skills](https://github.com/sanky369/vibe-building-skills.git) | 40 modular agent skills for SaaS, marketing systems, creative assets, and frontend design architecture. |
 | `elephant-goldfish-model` *(جدید)* | [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model.git) | Google's spec-first software design & review framework with deep Elephant context and fresh-eyed Goldfish reviewers. |
-| `300-claude-skills` *(بسته داخلی)* | `assets/claude-skills-300` | 41 extracted skills across Product, Engineering, Sales, Marketing, Finance, HR, and C-Suite from [300 Claude Skills & Prompts (Notion)](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4). Includes full attribution and provenance. |
-| `pre-launch-security-checklist` *(اسکیل داخلی)* | `assets/claude-skills-300/pre-launch-security-checklist` | Synthesized pre-launch production security audit from AI QA Monkey, Kalit AI, and Vibe-Eval 2026 for database RLS, auth, rate-limiting, and AI boundaries. |
+| `CyrusAsha-Skills` *(بسته داخلی)* | `assets/CyrusAsha-Skills` | مجموعه مهارت‌های بومی و اختصاصی پروژه شامل ۴۱ اسکیل استخراج‌شده از [300 Claude Skills & Prompts (Notion)](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4) همراه با ذکر منبع و شناسنامه. |
+| `pre-launch-security-checklist` *(اسکیل داخلی)* | `assets/CyrusAsha-Skills/pre-launch-security-checklist` | Synthesized pre-launch production security audit from AI QA Monkey, Kalit AI, and Vibe-Eval 2026 for database RLS, auth, rate-limiting, and AI boundaries. |
 
 ### 🔒 Cybersecurity & Pentesting / امنیت سایبری، ممیزی و مهندسی معکوس
 
