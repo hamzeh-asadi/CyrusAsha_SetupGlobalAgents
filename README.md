@@ -2,7 +2,7 @@
   <img src="assets/CyrusAsha-Banner.png" alt="CyrusAsha - Code. Intelligence. Order" width="350" />
 </div>
 
-# 🚀 Global AI Agent Configurator for Windows (v1.2.0 - Enterprise Edition)
+# 🚀 Global AI Agent Configurator for Windows (v1.1.0 - Enterprise Edition)
 
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6?logo=windows)](https://microsoft.com/windows)
 [![PowerShell](https://img.shields.io/badge/Shell-PowerShell%205.1%2B%20%7C%207%2B-5391FE?logo=powershell)](https://microsoft.com/powershell)
@@ -12,7 +12,7 @@
 
 ---
 
-یک اسکریپت جامع، خودکار و یکپارچه **PowerShell (نسخه ۱.۲.۰ - Enterprise Edition)** برای ساخت و پیکربندی پوشه مرجع مرکزی `C:\Users\<Username>\.agents` در ویندوز.
+یک اسکریپت جامع، خودکار و یکپارچه **PowerShell (نسخه ۱.۱.۰ - Enterprise Edition)** برای ساخت و پیکربندی پوشه مرجع مرکزی `C:\Users\<Username>\.agents` در ویندوز.
 
 این پروژه تمامی **اسکیل‌ها (Skills)**، **سرورهای MCP**، **قوانین خودکار (Rules)**، **دستورات اسلش (Slash Commands)**، **هوک‌ها (Hooks)** و **ایجنت‌های تخصصی (Sub-Agents)** را از **بیش از ۴۵ مخزن برتر متن‌باز دنیا** یک‌جا دانلود و تنظیم کرده و از طریق **لینک پوشه (Junction / Symbolic Link)** به بیش از ۲۰ ایجنت هوش مصنوعی روی سیستم شما متصل می‌کند.
 
