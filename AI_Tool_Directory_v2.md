@@ -23,6 +23,9 @@
 | **`ponytail`** *(جدید)* | Dietrich Gebert | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail.git) | فلسفه «توسعه‌دهنده ارشد کم‌کار»؛ جلوگیری از نوشتن کدهای اضافه، تکیه بر کتابخانه استاندارد، حذف وابستگی‌های سنگین. | رایگان و متن‌باز (MIT) |
 | **`one-skill-to-rule-them-all`** *(جدید)* | Rebelytics | [rebelytics/one-skill-to-rule-them-all](https://github.com/rebelytics/one-skill-to-rule-them-all.git) | متا-اسکیل ناظر بر نشست‌های کاری جهت استخراج الگوها، بازخوردها و تولید خودکار یا ارتقای اسکیل‌های دیگر. | رایگان و متن‌باز (CC BY 4.0) |
 | **`superpowers`** *(جدید)* | Obra (Jesse Vincent) | [obra/superpowers](https://github.com/obra/superpowers.git) | فریم‌ورک اسکیل‌های ایجنتی با متدولوژی TDD، شاخه‌بندی مجزا با Git Worktrees و مرور کد موازی. | رایگان و متن‌باز (MIT) |
+| **`vibe-building-skills`** *(جدید)* | Sanket Patel | [sanky369/vibe-building-skills](https://github.com/sanky369/vibe-building-skills.git) | ۴۰ اسکیل ماژولار ساخت SaaS، کپی‌رایتینگ، استراتژی محصول، مارکتینگ، دارایی‌های بصری و سیستم‌های دیزاین فرانت‌اند. | رایگان و متن‌باز (MIT) |
+| **`elephant-goldfish-model`** *(جدید)* | Google | [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model.git) | فریم‌ورک متدولوژی توسعه نرم‌افزار مبتنی بر مشخصات اولیه (Spec-first) با ایجنت‌های حافظه‌دار فیل (Elephant) و بازبین‌های تازه‌نفس ماهی‌قرمز (Goldfish). | رایگان و متن‌باز (Apache 2.0) |
+| **`300-claude-skills`** *(جدید)* | Claude Community | [300 Claude Skills & Prompts (Notion)](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4) | ۴۱ اسکیل تخصصی استخراج‌شده از مخزن مهارت‌های کلود در ۸ حوزه (مهندسی نرم‌افزار، معماری، فروش، بازاریابی، رشد PLG، مالی، منابع انسانی و مدیران ارشد). | رایگان و عمومی |
 
 ---
 
@@ -30,6 +33,7 @@
 
 | نام ابزار / اسکیل | خالق / سازمان | مخزن گیت‌هاب / لینک | کاربرد و ویژگی‌های کلیدی | وضعیت قیمت / لایسنس |
 | :--- | :--- | :--- | :--- | :--- |
+| **`pre-launch-security-checklist`** *(جدید)* | AI QA Monkey, Kalit AI, Vibe-Eval | [assets/claude-skills-300/pre-launch-security-checklist](assets/claude-skills-300/pre-launch-security-checklist) | ممیزی جامع امنیتی قبل از لانچ نهایی (RLS دیتابیس، سکرت‌ها، اعتبارسنجی سمت سرور و IDOR، ریت‌لیمیتینگ، هدرهای CSP/HSTS و محافظت پرامپت هوش مصنوعی). دستور `/CyrusAsha_PreLaunch-Security`. | رایگان و متن‌باز |
 | **`Anthropic-Cybersecurity-Skills`** | Mukul975 | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git) | ۸۱۷+ اسکیل امنیتی ساختاریافته مپ‌شده به ۶ فریم‌ورک استاندارد (MITRE ATT&CK, NIST CSF 2.0, D3FEND). | ۱۰۰٪ رایگان و متن‌باز (Apache 2.0) |
 | **`security-audit-skill`** *(جدید)* | Cloudflare | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill.git) | اسکیل رسمی ممیزی امنیت سورس‌کد با خروجی‌های ساختاریافته ماشین‌خوان و اعتبارسنجی مستقل یافته‌ها. | رایگان و متن‌باز (Apache 2.0) |
 | **`strix`** | useStrix | [usestrix/strix](https://github.com/usestrix/strix.git) | ایجنت هوشمند تست نفوذ (AI Pentester) برای شناسایی خودکار آسیب‌پذیری‌های وب و API همراه با ساخت PoC واقعی. | نسخه محلی رایگان / ابری تجاری |
@@ -79,6 +83,8 @@
 
 | نام ابزار / اسکیل | خالق / سازمان | مخزن گیت‌هاب / لینک | کاربرد و ویژگی‌های کلیدی | وضعیت قیمت / لایسنس |
 | :--- | :--- | :--- | :--- | :--- |
+| **`claude-mem`** *(جدید)* | TheDotMack | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem.git) | حافظه کانتکست پایدار در میان سشن‌های مختلف؛ ضبط اقدامات، فشرده‌سازی هوشمند و تزریق کانتکست به سشن‌های آتی ایجنت‌ها. | رایگان و متن‌باز (MIT) |
+| **`codebase-memory-mcp`** *(جدید)* | DeusData | [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp.git) | هوش کد محلی و گراف ساختاری دانش کدهای پروژه؛ کاهش تا ۹۹٪ مصرف توکن برای ۱۵۰+ زبان برنامه‌نویسی. | رایگان و متن‌باز |
 | **`Agent-Memory`** | Threesided Studios | [Threesided-Studios/Agent-Memory](https://github.com/Threesided-Studios/Agent-Memory.git) | سیستم حافظه بلندمدت هیبرید (ترکیب جستجوی کلمات کلیدی، وکتور و Knowledge Graph). | رایگان و متن‌باز (MIT) |
 | **`OpenViking`** | Volcengine | [volcengine/OpenViking](https://github.com/volcengine/OpenViking.git) | دیتابیس کانتکست خودتکامل‌دهنده برای تجمیع حافظه، سیستم‌های RAG و اسکیل‌های ایجنت. | رایگان و متن‌باز (Apache 2.0) |
 | **`mex` / `mex-mcp`** *(جدید)* | MEX Memory | [mex-memory/mex](https://github.com/mex-memory/mex.git) | لایه حافظه تیمی بومی گیت درون ریپوزیتوری برای اشتراک کانتکست و تصمیمات بین مهندسان و ایجنت‌ها. | رایگان و متن‌باز (MIT) |
@@ -90,8 +96,9 @@
 | نام ابزار / اسکیل | خالق / سازمان | مخزن گیت‌هاب / لینک | کاربرد و ویژگی‌های کلیدی | وضعیت قیمت / لایسنس |
 | :--- | :--- | :--- | :--- | :--- |
 | **`browser-use`** | Browser Use | [browser-use/browser-use](https://github.com/browser-use/browser-use.git) | کتابخانه پایتون برای تعامل کامل ایجنت با صفحات وب، کلیک، پر کردن فرم‌ها و پیمایش. | رایگان محلی / کلود تجاری |
-| **`agent-reach`** | EdisonChenAI | [EdisonChenAI/agent-reach](https://github.com/EdisonChenAI/agent-reach.git) | دسترسی مستقیم و ساختاریافته ایجنت‌ها به ۱۳ شبکه و پلتفرم آنلاین (Twitter/X, YouTube, Reddit, GitHub). | رایگان و متن‌باز (MIT) |
+| **`agent-reach`** *(مخزن کانونیکال)* | Panniantong | [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach.git) | دسترسی ساختاریافته ایجنت‌ها به پلتفرم‌های آنلاین (Twitter/X, YouTube, Reddit, GitHub, Bilibili) با CLI یکپارچه و صفر هزینه API. | رایگان و متن‌باز (Apache 2.0) |
 | **`Scrapegraph-ai`** | ScrapeGraphAI | [ScrapeGraphAI/Scrapegraph-ai](https://github.com/ScrapeGraphAI/Scrapegraph-ai.git) | وب اسکرپینگ هوشمند گراف-محور با بهره‌گیری از LLM جهت استخراج داده‌های بدون ساختار. | رایگان و متن‌باز |
+| **`Playwright MCP`** | Microsoft | [@playwright/mcp@latest](https://github.com/microsoft/playwright-mcp) | اتوماسیون رسمی مایکروسافت بر پایه درخت دسترسی‌پذیری و نصب خودکار باینری‌های کرومیوم برای عملکرد بدون خطای نرم‌افزارها. | رایگان و متن‌باز (Apache 2.0) |
 
 ---
 
@@ -99,6 +106,8 @@
 
 | نام ابزار / اسکیل | خالق / سازمان | مخزن گیت‌هاب / لینک | کاربرد و ویژگی‌های کلیدی | وضعیت قیمت / لایسنس |
 | :--- | :--- | :--- | :--- | :--- |
+| **`claude-plugins-official`** *(جدید)* | Anthropic | [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official.git) | کاتالوگ رسمی پلاگین‌های Claude Code شامل claude-code-setup، feature-dev، commit-commands و LSPs. | رایگان و متن‌باز (MIT) |
+| **`skills-google`** *(جدید)* | Google | [google/skills](https://github.com/google/skills.git) | اسکیل‌های رسمی محصولات و فناوری‌های گوگل شامل Google Cloud, Gemini API, Developer Tools. | رایگان و متن‌باز (Apache 2.0) |
 | **`skills-nvidia`** *(جدید)* | NVIDIA | [NVIDIA/skills](https://github.com/NVIDIA/skills.git) | اسکیل‌های رسمی انویدیا برای شبیه‌سازی، Physical AI، کتابخانه‌های CUDA-X، رباتیک و AI Blueprints. | رایگان و متن‌باز (Apache 2.0) |
 | **`skills-huggingface`** *(جدید)* | Hugging Face | [huggingface/skills](https://github.com/huggingface/skills.git) | ابزارهای رسمی تعامل با هاگینگ‌فیس (مدیریت مدل‌ها، ساخت دیتست، کار با Spaces و فاین‌تیونینگ TRL). | رایگان و متن‌باز (Apache 2.0) |
 | **`skills-anthropic`** *(جدید)* | Anthropic | [anthropics/skills](https://github.com/anthropics/skills.git) | مخزن استاندارد باز اسکیل‌های ایجنتی شرکت Anthropic تحت بنیاد Agentic AI Foundation. | رایگان و متن‌باز (Apache 2.0) |
@@ -107,7 +116,17 @@
 
 ---
 
-## ۹. ایجنت‌های کدنویسی ترمینال و دسکتاپ (Terminal & Desktop Coding Agents)
+## ۹. نرم‌افزارهای مستقل پیشنهادی مدیریت ایجنت‌ها (Recommended Agent Management Applications)
+
+> **توجه:** ابزارهای زیر **نرم‌افزار مستقل، اپلیکیشن و پلتفرم اجرایی (Software Application)** هستند، نه اسکیل (Skill) و نه ایجنت پرامپت (Agent Persona). این نرم‌افزارها برای مانیتورینگ متمرکز، بودجه‌بندی و مدیریت سوارم‌ها پیشنهاد می‌شوند:
+
+| نام نرم‌افزار | خالق / تیم | مخزن گیت‌هاب / لینک | نوع نرم‌افزار | کاربرد اصلی |
+| :--- | :--- | :--- | :--- | :--- |
+| **`Paperclip`** *(جدید)* | Paperclip AI | [paperclipai/paperclip](https://github.com/paperclipai/paperclip) | اپلیکیشن وب و دسکتاپ مدیریت ایجنت | داشبورد متمرکز متن‌باز برای رصد، هدایت، بودجه‌بندی و ارکستراسیون ایجنت‌ها در محیط‌های کاری سازمانی. |
+
+---
+
+## ۱۰. ایجنت‌های کدنویسی ترمینال و دسکتاپ (Terminal & Desktop Coding Agents)
 
 | نام ایجنت | خالق / تیم | مخزن / آدرس | دایرکتوری در ویندوز | نحوه اتصال در CyrusAsha |
 | :--- | :--- | :--- | :--- | :--- |

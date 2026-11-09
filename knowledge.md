@@ -1,4 +1,4 @@
-<!-- GLOBAL-AI-AGENTS:START -->
+﻿<!-- GLOBAL-AI-AGENTS:START -->
 # Global AI Agent Knowledge & Orchestration Index
 
 CRITICAL INSTRUCTION FOR FREEBUFF / CODEBUFF DESKTOP AND CLI
@@ -36,14 +36,14 @@ Do not ignore this index. Treat `.agents/` as the single source of truth.
 # Freebuff & Codebuff Knowledge Base: CyrusAsha_SetupGlobalAgents
 
 ## 1. System Knowledge & Purpose
-`CyrusAsha_SetupGlobalAgents` is a unified Windows configuration framework designed to eliminate configuration fragmentation across 20+ AI coding environments. Freebuff and Codebuff open workspaces in project roots, where they inspect local files. This repository bridges project folders to the single global source of truth at `%USERPROFILE%\.agents` and synchronizes 40 curated open-source repositories.
+`CyrusAsha_SetupGlobalAgents` is a unified Windows configuration framework designed to eliminate configuration fragmentation across 20+ AI coding environments. Freebuff and Codebuff open workspaces in project roots, where they inspect local files. This repository bridges project folders to the single global source of truth at `%USERPROFILE%\.agents` and synchronizes 45+ curated open-source repositories.
 
 ---
 
 ## 2. Windows NTFS Junction Deep-Dive & OS Reinstall Recovery
 - **What is a Junction?**: An NTFS Directory Junction is a filesystem reparse point redirecting directory requests to an alternate target on the same machine.
 - **Physical Size**: A Junction in a project directory (`.agents/`) occupies **0 bytes of physical disk storage**.
-- **Explorer Size Calculation**: Windows File Explorer traverses the junction pointer and totals the target directory contents (~350 MB from the 40 cloned repositories). This does NOT duplicate files or consume extra space on project partitions.
+- **Explorer Size Calculation**: Windows File Explorer traverses the junction pointer and totals the target directory contents (~450 MB from the 45+ cloned repositories). This does NOT duplicate files or consume extra space on project partitions.
 - **Safe Unlinking**: Never delete a Junction using `Shift+Delete` or recursive directory deletion. Use CMD `rmdir .agents` to safely remove the reparse point without modifying target files.
 - **Windows OS Reinstall Resilience**: When Windows is reinstalled on `C:`, existing projects on secondary drives (`D:\`, `E:\`) retain old `.agents` reparse points that may point to missing user profiles or have stale SIDs. `Initialize-AgentWorkspace` automatically validates the health and target of `.agents`. If broken, dangling, or pointing to a previous installation, it safely removes the stale junction pointer and re-links it to the current user's `%USERPROFILE%\.agents`.
 
@@ -53,17 +53,22 @@ Do not ignore this index. Treat `.agents/` as the single source of truth.
 1. **Directory Preparation**: Creates `%USERPROFILE%\.agents\{skills,rules,agents,commands,hooks}`.
 2. **Global Rules Deployment**: Generates `00-auto-orchestrator.md`, `compress-communication.md`, and `security-architect.md`.
 3. **Master Instruction Generation**: Writes managed blocks to central instruction files (`knowledge.md`, `AGENTS.md`, etc.).
-4. **Slash Command Deployment**: Generates both branded (`CyrusAsha_<Name>.md`) and alias (`<name>.md`) files, including `/CyrusAsha_Compress`.
+4. **Slash Command Deployment**: Generates both branded (`CyrusAsha_<Name>.md`) and alias (`<name>.md`) files, including `/CyrusAsha_PreLaunch-Security` and `/CyrusAsha_Compress`.
 5. **Lifecycle Hooks**: Sets up `pre-compact.ps1` for conversation compaction.
-6. **MCP Server Setup**: Installs `mcp.json` with 8 standard servers (GitHub, Filesystem, Brave, Supabase, DuckDB, GSC, Playwright, Codebase-Memory) without overwriting existing tokens.
-7. **Ecosystem Repository Sync**: Shallow-clones 40 open-source repos into `$env:TEMP` and extracts skills/rules/agents/commands.
+6. **MCP Server Setup**: Installs `mcp.json` with 8 standard servers (GitHub, Filesystem, Brave, Supabase, DuckDB, GSC, Playwright [@playwright/mcp@latest with installed Chromium binaries], Codebase-Memory) without overwriting user secrets.
+7. **Ecosystem Repository Sync**: Shallow-clones 45+ open-source repos (including `claude-mem`, `claude-plugins-official`, `skills-google`, `vibe-building-skills`, `elephant-goldfish-model`, canonical `Panniantong/Agent-Reach`, and bundled 41 skills from [300 Claude Skills & Prompts | Notion](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4)) into `$env:TEMP` and extracts skills/rules/agents/commands.
 8. **Resource Aggregation**: Scans existing agent installations to aggregate legacy user skills.
 9. **Agent Home Linking**: Connects 20+ AI IDE home folders via Junctions.
 10. **Global Command Registration**: Writes `init-project-files.ps1` and injects wrapper functions into PowerShell `$PROFILE`.
 
 ---
 
-## 4. Supported Agents & Target Paths
+## 4. Recommended Companion Management Applications (Non-Skill / Non-Agent Software)
+- **Paperclip** ([paperclipai/paperclip](https://github.com/paperclipai/paperclip)): Open-source web-based management platform for orchestrating AI agent swarms, tracking spend, and coordinating team workflows. It is recommended as a standalone companion application rather than an agent skill.
+
+---
+
+## 5. Supported Agents & Target Paths
 | Agent / IDE | Path on Windows | Connection Method |
 | :--- | :--- | :--- |
 | **Hermes Agent** | `%USERPROFILE%\.hermes` | Directory Junction |

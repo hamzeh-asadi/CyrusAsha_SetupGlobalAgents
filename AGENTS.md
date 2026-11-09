@@ -1,4 +1,4 @@
-<!-- GLOBAL-AI-AGENTS:START -->
+﻿<!-- GLOBAL-AI-AGENTS:START -->
 # Global AI Agent Knowledge & Orchestration Index
 
 CRITICAL INSTRUCTION FOR ALL AI CODING AGENTS

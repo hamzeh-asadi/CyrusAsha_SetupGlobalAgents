@@ -1,7 +1,7 @@
 # ==============================================================================
 # Global AI Agent Configurator for Windows
 # File: CyrusAsha_GlobalAgents.ps1
-# Version: 1.1.0 (Enterprise Multi-Agent & Resilience Edition)
+# Version: 1.2.0 (Enterprise Multi-Agent & Resilience Edition)
 # Central Directory: %USERPROFILE%\.agents
 #
 # Creator / سازنده:
@@ -27,7 +27,7 @@
 # ==============================================================================
 
 $ErrorActionPreference = "Continue"
-$script:Version = "1.1.0"
+$script:Version = "1.2.0"
 $script:StartMarker = "<!-- GLOBAL-AI-AGENTS:START -->"
 $script:EndMarker   = "<!-- GLOBAL-AI-AGENTS:END -->"
 
@@ -185,7 +185,7 @@ Before planning, coding, refactoring, UI/UX, SEO, or security work, silently:
 4. Adopt a specialist persona from `.agents/agents/` when the domain is specific
 5. Use MCP servers from `.agents/mcp.json`
 6. Honor slash-command playbooks in `.agents/commands/`:
-   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` `/CyrusAsha_Compress`
+   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_PreLaunch-Security` `/CyrusAsha_Compact` `/CyrusAsha_Compress`
 7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).
 
 If `.agents/` is missing, run inside the project root:
@@ -446,6 +446,21 @@ function Install-SlashCommands {
             )
         },
         @{
+            Names = @("CyrusAsha_PreLaunch-Security.md", "prelaunch-security.md")
+            Content = @(
+                '# Command: /CyrusAsha_PreLaunch-Security (alias: /prelaunch-security)',
+                'Description: Comprehensive pre-launch production security audit synthesizing best practices from AI QA Monkey, Kalit AI, and Vibe-Eval 2026. Audits database RLS, secrets/environment hygiene, server-side auth & IDOR, API rate limiting, AI prompt/tool injection boundaries, and security headers before going live.',
+                '',
+                '## Protocol:',
+                '1. Scan git history and local environment for exposed API secrets, database URIs, or private keys.',
+                '2. Verify Row-Level Security (RLS) is enabled across all database tables and cloud storage buckets are locked down.',
+                '3. Validate server-side authorization: verify user-scoping on all database queries (prevent IDOR).',
+                '4. Verify API rate limits and webhook HMAC SHA256 signature verification.',
+                '5. In AI applications: enforce input XML boundary tagging, token caps, and tool execution schema validation.',
+                '6. Verify production HTTP security headers (CSP, HSTS, X-Content-Type-Options, X-Frame-Options) and disable verbose stack traces.'
+            )
+        },
+        @{
             Names = @("CyrusAsha_Commands.md", "commands.md")
             Content = @(
                 '# Command: /CyrusAsha_Commands (alias: /commands)',
@@ -459,6 +474,7 @@ function Install-SlashCommands {
                 '| `/CyrusAsha_Rules` | `/rules` | Scan and enforce global project rules |',
                 '| `/CyrusAsha_Agents` | `/agents` | Delegate tasks to specialist sub-agents |',
                 '| `/CyrusAsha_Audit-Security` | `/audit-security` | Security audit & 5 governance files |',
+                '| `/CyrusAsha_PreLaunch-Security` | `/prelaunch-security` | Pre-launch production security audit (RLS, Auth, Rate-limit, AI guardrails) |',
                 '| `/CyrusAsha_Compact` | `/compact` | Save checkpoint & compact context |',
                 '| `/CyrusAsha_Compress` | `/compress` | Strip fluff & force concise responses |',
                 '| `/CyrusAsha_Hooks` | `/hooks` | Inspect & run lifecycle hooks |',
@@ -531,7 +547,7 @@ if (-not (Test-Path -LiteralPath $McpFile)) {
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-playwright"]
+      "args": ["-y", "@playwright/mcp@latest"]
     },
     "codebase-memory": {
       "command": "npx",
@@ -545,19 +561,59 @@ if (-not (Test-Path -LiteralPath $McpFile)) {
 } else {
     try {
         $mcpContent = Get-Content -LiteralPath $McpFile -Raw -Encoding UTF8
+        $mcpObj = $mcpContent | ConvertFrom-Json
+        $mcpModified = $false
+
+        # Upgrade legacy/deprecated playwright server to official @playwright/mcp@latest
+        if ($mcpObj.mcpServers.playwright) {
+            $pwArgs = $mcpObj.mcpServers.playwright.args
+            if ($pwArgs -contains "@modelcontextprotocol/server-playwright" -or ($pwArgs -join " ") -like "*@modelcontextprotocol/server-playwright*") {
+                $mcpObj.mcpServers.playwright.args = @("-y", "@playwright/mcp@latest")
+                $mcpModified = $true
+                Write-Host "[UPDATE] Upgraded legacy @modelcontextprotocol/server-playwright to official @playwright/mcp@latest" -ForegroundColor Cyan
+            }
+        } elseif ($mcpObj.mcpServers) {
+            $mcpObj.mcpServers | Add-Member -NotePropertyName "playwright" -NotePropertyValue ([PSCustomObject]@{
+                command = "npx"
+                args    = @("-y", "@playwright/mcp@latest")
+            }) -ErrorAction SilentlyContinue
+            $mcpModified = $true
+            Write-Host "[OK] Added official @playwright/mcp@latest to existing mcp.json" -ForegroundColor Cyan
+        }
+
+        # Ensure codebase-memory is present
         if ($mcpContent -notmatch '"codebase-memory"') {
-            $mcpObj = $mcpContent | ConvertFrom-Json
             if ($mcpObj.mcpServers) {
                 $mcpObj.mcpServers | Add-Member -NotePropertyName "codebase-memory" -NotePropertyValue ([PSCustomObject]@{
                     command = "npx"
                     args    = @("-y", "codebase-memory-mcp")
                 }) -ErrorAction SilentlyContinue
-                $mcpObj | ConvertTo-Json -Depth 10 | Set-Content -Path $McpFile -Encoding UTF8
+                $mcpModified = $true
                 Write-Host "[OK] Added codebase-memory to existing mcp.json" -ForegroundColor Cyan
             }
         }
-    } catch {}
+
+        if ($mcpModified) {
+            $mcpObj | ConvertTo-Json -Depth 10 | Set-Content -Path $McpFile -Encoding UTF8
+        }
+    } catch {
+        Write-Host "  [WARN] Failed updating mcp.json: $($_.Exception.Message)" -ForegroundColor DarkYellow
+    }
     Write-Host "[SKIP] mcp.json already exists - user secrets preserved." -ForegroundColor DarkYellow
+}
+
+# Validate Playwright browser installation on Windows
+$msPlaywrightDir = Join-Path $env:LOCALAPPDATA "ms-playwright"
+if (-not (Test-Path $msPlaywrightDir) -or (Get-ChildItem -Path $msPlaywrightDir -Filter "chromium*" -ErrorAction SilentlyContinue).Count -eq 0) {
+    Write-Host "[PLAYWRIGHT] Chromium binary not detected in $msPlaywrightDir. Installing Playwright Chromium browser..." -ForegroundColor Yellow
+    if (Get-Command npx -ErrorAction SilentlyContinue) {
+        try {
+            cmd /c npx -y playwright install chromium
+            Write-Host "[OK] Playwright Chromium browser installed successfully." -ForegroundColor Cyan
+        } catch {
+            Write-Host "  [WARN] Could not auto-install Playwright browser. Run 'npx playwright install chromium' manually." -ForegroundColor DarkYellow
+        }
+    }
 }
 
 # ------------------------------------------------------------------------------
@@ -585,7 +641,7 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
         @{ Name = "Agent-Memory";                   Url = "https://github.com/Threesided-Studios/Agent-Memory.git" },
         @{ Name = "OpenViking";                     Url = "https://github.com/volcengine/OpenViking.git" },
         @{ Name = "browser-use";                    Url = "https://github.com/browser-use/browser-use.git" },
-        @{ Name = "agent-reach";                    Url = "https://github.com/EdisonChenAI/agent-reach.git" },
+        @{ Name = "agent-reach";                    Url = "https://github.com/Panniantong/Agent-Reach.git" },
         @{ Name = "Scrapegraph-ai";                 Url = "https://github.com/ScrapeGraphAI/Scrapegraph-ai.git" },
         @{ Name = "awesome-harness-engineering";    Url = "https://github.com/yenanjing/awesome-harness-engineering.git" },
 
@@ -619,7 +675,18 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
         @{ Name = "obsidian-skills";                Url = "https://github.com/kepano/obsidian-skills.git" },
 
         # 7. Terminal Coding Agents (New)
-        @{ Name = "free-pi-cli";                    Url = "https://github.com/dennisonbertram/free-pi-cli.git" }
+        @{ Name = "free-pi-cli";                    Url = "https://github.com/dennisonbertram/free-pi-cli.git" },
+
+        # 8. SaaS, Growth & Vibe Engineering (New)
+        @{ Name = "vibe-building-skills";           Url = "https://github.com/sanky369/vibe-building-skills.git" },
+
+        # 9. Google Spec-First Architecture & Review Agents (New)
+        @{ Name = "elephant-goldfish-model";        Url = "https://github.com/google/elephant-goldfish-model.git" },
+
+        # 10. Memory, Context & Official Ecosystem Extensions (New)
+        @{ Name = "claude-mem";                     Url = "https://github.com/thedotmack/claude-mem.git" },
+        @{ Name = "claude-plugins-official";        Url = "https://github.com/anthropics/claude-plugins-official.git" },
+        @{ Name = "skills-google";                  Url = "https://github.com/google/skills.git" }
     )
     foreach ($Repo in $ReposList) {
         $TempRepoDir = Join-Path $env:TEMP $Repo.Name
@@ -644,13 +711,24 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
                 New-Item -ItemType Directory -Force -Path $DestFolder | Out-Null
                 Copy-Item -Recurse -Force -Path "$TempRepoDir\*" -Destination $DestFolder -Exclude ".git" -ErrorAction SilentlyContinue
             }
-            # Auto-discover any subfolder containing a SKILL.md
-            Get-ChildItem -Path $TempRepoDir -Directory -Exclude ".git" -ErrorAction SilentlyContinue | ForEach-Object {
-                if (Test-Path (Join-Path $_.FullName "SKILL.md")) {
-                    $targetSubSkill = Join-Path $SkillsDir $_.Name
+            # Auto-discover any subfolder or nested category containing a SKILL.md (e.g. skills/frontend-design/color-system/SKILL.md)
+            Get-ChildItem -Path $TempRepoDir -Recurse -Filter "SKILL.md" -Exclude ".git" -ErrorAction SilentlyContinue | ForEach-Object {
+                $skillFolder = $_.Directory
+                if ($skillFolder.FullName -ne $TempRepoDir) {
+                    $targetSubSkill = Join-Path $SkillsDir $skillFolder.Name
                     New-Item -ItemType Directory -Force -Path $targetSubSkill | Out-Null
-                    Copy-Item -Recurse -Force -Path "$($_.FullName)\*" -Destination $targetSubSkill -Exclude ".git" -ErrorAction SilentlyContinue
+                    Copy-Item -Recurse -Force -Path "$($skillFolder.FullName)\*" -Destination $targetSubSkill -Exclude ".git" -ErrorAction SilentlyContinue
                 }
+            }
+
+            # Auto-discover any agent personas (*.md) in any agents/ directory
+            Get-ChildItem -Path $TempRepoDir -Recurse -Filter "*.md" -Exclude ".git" -ErrorAction SilentlyContinue | Where-Object { $_.Directory.Name -eq "agents" } | ForEach-Object {
+                Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $AgentsDir $_.Name) -Force -ErrorAction SilentlyContinue
+            }
+
+            # Auto-discover any slash commands (*.md) in any commands/ directory
+            Get-ChildItem -Path $TempRepoDir -Recurse -Filter "*.md" -Exclude ".git" -ErrorAction SilentlyContinue | Where-Object { $_.Directory.Name -eq "commands" } | ForEach-Object {
+                Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $CommandsDir $_.Name) -Force -ErrorAction SilentlyContinue
             }
         } catch {
             Write-Host "  [WARN] $($Repo.Name): $($_.Exception.Message)" -ForegroundColor DarkYellow
@@ -658,6 +736,20 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
     }
 } else {
     Write-Host "[WARN] git not found on PATH - skipped repository fetch." -ForegroundColor DarkYellow
+}
+
+# ------------------------------------------------------------------------------
+# 8.2. Sync bundled 300 Claude Skills & Prompts from assets
+# ------------------------------------------------------------------------------
+$BundledSkills = Join-Path $PSScriptRoot "assets\claude-skills-300"
+if ($PSScriptRoot -and (Test-Path -LiteralPath $BundledSkills)) {
+    Write-Host "`n[BUNDLED] Installing bundled 300 Claude Skills & Prompts into ~/.agents..." -ForegroundColor Yellow
+    Get-ChildItem -Path $BundledSkills -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+        $targetSkill = Join-Path $SkillsDir $_.Name
+        New-Item -ItemType Directory -Force -Path $targetSkill | Out-Null
+        Copy-Item -Recurse -Force -Path "$($_.FullName)\*" -Destination $targetSkill -ErrorAction SilentlyContinue
+    }
+    Write-Host "[OK] 300 Claude Skills & Prompts installed." -ForegroundColor Cyan
 }
 
 # ------------------------------------------------------------------------------
@@ -949,7 +1041,7 @@ function Initialize-AgentWorkspace {
             '4. Adopt a specialist persona from `.agents/agents/` when the domain is specific',
             '5. Use MCP servers from `.agents/mcp.json`',
             '6. Honor slash-command playbooks in `.agents/commands/`:',
-            '   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_Compact` `/CyrusAsha_Compress` ',
+            '   `/CyrusAsha_Auto` `/CyrusAsha_Skills` `/CyrusAsha_Rules` `/CyrusAsha_Agents` `/CyrusAsha_Hooks` `/CyrusAsha_Commands` `/CyrusAsha_Audit-Security` `/CyrusAsha_PreLaunch-Security` `/CyrusAsha_Compact` `/CyrusAsha_Compress` ',
             '7. Read and synchronize project domain context and conventions from `knowledge.md` (and `AGENTS.md`).',
             '',
             'If `.agents/` is missing, run in PowerShell from the project root:',

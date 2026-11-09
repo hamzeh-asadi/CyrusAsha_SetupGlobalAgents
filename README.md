@@ -2,19 +2,19 @@
   <img src="assets/CyrusAsha-Banner.png" alt="CyrusAsha - Code. Intelligence. Order" width="350" />
 </div>
 
-# 🚀 Global AI Agent Configurator for Windows (v1.1.0 - Enterprise Edition)
+# 🚀 Global AI Agent Configurator for Windows (v1.2.0 - Enterprise Edition)
 
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6?logo=windows)](https://microsoft.com/windows)
 [![PowerShell](https://img.shields.io/badge/Shell-PowerShell%205.1%2B%20%7C%207%2B-5391FE?logo=powershell)](https://microsoft.com/powershell)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Supported Agents](https://img.shields.io/badge/Agents-20%2B%20AI%20IDEs%20%26%20CLIs-success)]()
-[![Integrated Repos](https://img.shields.io/badge/Repos-40%20Open--Source-blueviolet)]()
+[![Integrated Repos](https://img.shields.io/badge/Repos-45%2B%20Open--Source-blueviolet)]()
 
 ---
 
-یک اسکریپت جامع، خودکار و یکپارچه **PowerShell (نسخه ۱.۱.۰ - Enterprise Edition)** برای ساخت و پیکربندی پوشه مرجع مرکزی `C:\Users\<Username>\.agents` در ویندوز.
+یک اسکریپت جامع، خودکار و یکپارچه **PowerShell (نسخه ۱.۲.۰ - Enterprise Edition)** برای ساخت و پیکربندی پوشه مرجع مرکزی `C:\Users\<Username>\.agents` در ویندوز.
 
-این پروژه تمامی **اسکیل‌ها (Skills)**، **سرورهای MCP**، **قوانین خودکار (Rules)**، **دستورات اسلش (Slash Commands)**، **هوک‌ها (Hooks)** و **ایجنت‌های تخصصی (Sub-Agents)** را از **۴۰ مخزن برتر متن‌باز دنیا** یک‌جا دانلود و تنظیم کرده و از طریق **لینک پوشه (Junction / Symbolic Link)** به بیش از ۲۰ ایجنت هوش مصنوعی روی سیستم شما متصل می‌کند.
+این پروژه تمامی **اسکیل‌ها (Skills)**، **سرورهای MCP**، **قوانین خودکار (Rules)**، **دستورات اسلش (Slash Commands)**، **هوک‌ها (Hooks)** و **ایجنت‌های تخصصی (Sub-Agents)** را از **بیش از ۴۵ مخزن برتر متن‌باز دنیا** یک‌جا دانلود و تنظیم کرده و از طریق **لینک پوشه (Junction / Symbolic Link)** به بیش از ۲۰ ایجنت هوش مصنوعی روی سیستم شما متصل می‌کند.
 
 ---
 
@@ -145,11 +145,11 @@ This means **every skill installed once in `.agents\skills\` is instantly availa
 
 ---
 
-## 📦 Integrated Repositories (40 Open-Source Tools) / فهرست ۴۰ مخزن ادغام‌شده
+## 📦 Integrated Repositories (45+ Open-Source Tools) / فهرست ۴۵+ مخزن ادغام‌شده
 
-The script automatically clones (or updates via `git pull` on subsequent runs) the following 40 repositories and places their contents into the central `.agents` folder:
+The script automatically clones (or updates via `git pull` on subsequent runs) the following 45+ repositories and places their contents into the central `.agents` folder:
 
-این اسکریپت در هنگام اجرا، ۴۰ مخزن زیر را به صورت خودکار کلون (یا در اجراهای بعدی `git pull` و آپدیت) کرده و محتوای آن‌ها را در پوشه مرکزی `.agents` جای‌گذاری می‌کند:
+این اسکریپت در هنگام اجرا، ۴۵+ مخزن زیر را به صورت خودکار کلون (یا در اجراهای بعدی `git pull` و آپدیت) کرده و محتوای آن‌ها را در پوشه مرکزی `.agents` جای‌گذاری می‌کند:
 
 ### 🧩 Frameworks, Harnesses & Multi-Agent Systems / فریم‌ورک‌ها، هارنس‌ها و سیستم‌های چند-ایجنتی
 
@@ -172,6 +172,10 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | `ponytail` *(جدید)* | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail.git) | Senior developer minimalism mindset: anti-bloat, native stdlib preference, zero-unnecessary-code. |
 | `one-skill-to-rule-them-all` *(جدید)* | [rebelytics/one-skill-to-rule-them-all](https://github.com/rebelytics/one-skill-to-rule-them-all.git) | Autonomous task observer meta-skill that analyzes sessions, captures friction, and evolves skills. |
 | `superpowers` *(جدید)* | [obra/superpowers](https://github.com/obra/superpowers.git) | Agentic skills framework with TDD methodology, isolated Git worktrees, and parallel review agents. |
+| `vibe-building-skills` *(جدید)* | [sanky369/vibe-building-skills](https://github.com/sanky369/vibe-building-skills.git) | 40 modular agent skills for SaaS, marketing systems, creative assets, and frontend design architecture. |
+| `elephant-goldfish-model` *(جدید)* | [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model.git) | Google's spec-first software design & review framework with deep Elephant context and fresh-eyed Goldfish reviewers. |
+| `300-claude-skills` *(بسته داخلی)* | `assets/claude-skills-300` | 41 extracted skills across Product, Engineering, Sales, Marketing, Finance, HR, and C-Suite from [300 Claude Skills & Prompts (Notion)](https://app.notion.com/p/300-Claude-Skills-Prompts-c357bda2535782d0b81501d86697adf4). Includes full attribution and provenance. |
+| `pre-launch-security-checklist` *(اسکیل داخلی)* | `assets/claude-skills-300/pre-launch-security-checklist` | Synthesized pre-launch production security audit from AI QA Monkey, Kalit AI, and Vibe-Eval 2026 for database RLS, auth, rate-limiting, and AI boundaries. |
 
 ### 🔒 Cybersecurity & Pentesting / امنیت سایبری، ممیزی و مهندسی معکوس
 
@@ -207,6 +211,7 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 
 | Repository | GitHub | Description / کاربرد |
 |:---|:---|:---|
+| `claude-mem` *(جدید)* | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem.git) | Persistent context across sessions for every agent; captures sessions, compresses with AI, and injects context into future runs. Works with Claude Code, Cursor, Codex, Gemini, Hermes, Copilot, OpenCode. |
 | `Agent-Memory` | [Threesided-Studios/Agent-Memory](https://github.com/Threesided-Studios/Agent-Memory.git) | Persistent memory system combining keyword search, vector search, and knowledge graph for agents. |
 | `OpenViking` | [volcengine/OpenViking](https://github.com/volcengine/OpenViking.git) | Self-completing context database for memory integration, RAG systems, and agent skills. |
 | `mex` *(جدید)* | [mex-memory/mex](https://github.com/mex-memory/mex.git) | Git-native team & project memory shared across engineering teams and coding agents. |
@@ -217,13 +222,15 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | Repository | GitHub | Description / کاربرد |
 |:---|:---|:---|
 | `browser-use` | [browser-use/browser-use](https://github.com/browser-use/browser-use.git) | Powerful tool to give agents web browsing, clicking, form filling, and real page interaction capabilities. |
-| `agent-reach` | [EdisonChenAI/agent-reach](https://github.com/EdisonChenAI/agent-reach.git) | Direct agent access to internet platforms (Twitter/X, YouTube, Reddit, GitHub, ...). |
+| `agent-reach` | [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach.git) | Canonical upstream CLI giving agents eyes across the entire web: Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu with zero API fees. |
 | `Scrapegraph-ai` | [ScrapeGraphAI/Scrapegraph-ai](https://github.com/ScrapeGraphAI/Scrapegraph-ai.git) | Intelligent graph- and LLM-based scraping for extracting structured data from websites and documents. |
 
 ### 🏛️ Official Tech Ecosystems & Hardware Integration / اسکیل‌های رسمی اکوسیستم‌های فناوری
 
 | Repository | GitHub | Description / کاربرد |
 |:---|:---|:---|
+| `claude-plugins-official` *(جدید)* | [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official.git) | Official Anthropic directory of plugins, LSPs, and workflow setups (`claude-code-setup`, `feature-dev`, `commit-commands`). |
+| `skills-google` *(جدید)* | [google/skills](https://github.com/google/skills.git) | Official Google Agent Skills for Google Cloud, Gemini API, Developer Tools, Analytics, and Identity. |
 | `skills-nvidia` *(جدید)* | [NVIDIA/skills](https://github.com/NVIDIA/skills.git) | Official NVIDIA skills for Physical AI, robotics, CUDA-X, simulation, and enterprise RAG. |
 | `skills-huggingface` *(جدید)* | [huggingface/skills](https://github.com/huggingface/skills.git) | Deep Hugging Face integration: models, datasets, Spaces, and cloud training pipelines. |
 | `skills-anthropic` *(جدید)* | [anthropics/skills](https://github.com/anthropics/skills.git) | Official public standard and foundational agent skills from Anthropic. |
@@ -235,6 +242,19 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | Repository | GitHub | Description / کاربرد |
 |:---|:---|:---|
 | `free-pi-cli` *(جدید)* | [dennisonbertram/free-pi-cli](https://github.com/dennisonbertram/free-pi-cli.git) | Free open terminal coding agent client with private context routing and zero ads in model prompt. |
+
+---
+
+## 🖥️ Recommended AI Management Applications / نرم‌افزارهای مستقل پیشنهادی مدیریت ایجنت‌ها
+
+> [!NOTE]
+> ابزارهای زیر نرم‌افزارهای اجرایی و پلتفرم‌های مستقل مدیریتی (Application) هستند، نه اسکیل یا شخصیت ایجنت (Agent Prompt). این نرم‌افزارها برای ارکستراسیون، مانیتورینگ متمرکز و مدیریت تیمی ایجنت‌ها پیشنهاد می‌شوند:
+
+| Application | Repository / Site | Category | Description / کاربرد |
+|:---|:---|:---|:---|
+| **Paperclip** | [paperclipai/paperclip](https://github.com/paperclipai/paperclip) | Agent Management & Ops GUI | The open-source web application everyone uses to manage AI agents at work. Provides centralized team orchestration, multi-agent task dispatch, usage budgeting, and unified dashboard visibility for enterprise agent swarms. |
+
+*نرم‌افزار Paperclip یک داشبورد متن‌باز و سازمانی تحت وب است که به تیم‌ها امکان می‌دهد ایجنت‌های متعددی را در محیط‌های مختلف کاری رصد، بودجه‌بندی و هدایت کنند.*
 
 ---
 
@@ -252,12 +272,12 @@ The file `C:\Users\<Username>\.agents\mcp.json` is automatically created with th
 | 4 | Supabase | `@supabase/mcp-server-supabase@latest` | Direct connection to Supabase database, table creation, SQL queries, and RLS configuration. |
 | 5 | DuckDB | `@modelcontextprotocol/server-duckdb` | Fast data analysis and SQL queries on local database (`C:\Data\local_database.duckdb`). |
 | 6 | Google Search Console | `@aminforou/mcp-gsc` | Real SEO data analysis, keywords, clicks, and impressions directly from agent chat. |
-| 7 | Playwright | `@modelcontextprotocol/server-playwright` | Browser automation, End-to-End testing, and live UI inspection by the agent. |
+| 7 | Playwright | `@playwright/mcp@latest` | Official Microsoft browser automation, End-to-End testing, and live UI accessibility inspection. |
 | 8 | Codebase Memory *(جدید)* | `codebase-memory-mcp` | Local code intelligence & structural knowledge graph for 150+ languages; reduces tokens by up to 99%. |
 
-> **Note:** The `mcp.json` file is created **only once** and your API tokens/keys are **never overwritten** on re-runs.
+> **Note:** The `mcp.json` file is created **only once** and your API tokens/keys are **never overwritten** on re-runs. Legacy `@modelcontextprotocol/server-playwright` is automatically upgraded to official `@playwright/mcp@latest`.
 
-> **نکته:** فایل `mcp.json` فقط **یک‌بار** ساخته می‌شود و توکن‌ها/کلیدهای API شما هرگز بازنویسی نمی‌شوند.
+> **نکته:** فایل `mcp.json` فقط **یک‌بار** ساخته می‌شود و توکن‌ها/کلیدهای API شما هرگز بازنویسی نمی‌شوند. نسخه قدیمی و منسوخ `@modelcontextprotocol/server-playwright` به صورت خودکار به پکیج رسمی مایکروسافت `@playwright/mcp@latest` ارتقا می‌یابد و باینری‌های کرومیوم برای عملکرد بدون خطای نرم‌افزارها نصب می‌شوند.
 
 ### 💻 Fast CLI Installation Commands for MCPs / دستورات نصب سریع سرورهای MCP در ترمینال
 
@@ -267,8 +287,10 @@ The file `C:\Users\<Username>\.agents\mcp.json` is automatically created with th
 # ۱. سرور Codebase Memory (ساخت خودکار گراف ساختاری و هوش کد محلی)
 claude mcp add codebase-memory -- npx -y codebase-memory-mcp
 
-# ۲. سرور Playwright (اتوماسیون مرورگر و تست UI)
-claude mcp add playwright -- npx -y @modelcontextprotocol/server-playwright
+# ۲. سرور Playwright (اتوماسیون رسمی مایکروسافت بر پایه درخت دسترسی‌پذیری)
+claude mcp add playwright -- npx -y @playwright/mcp@latest
+# اطمینان از دانلود باینری کرومیوم جهت رفع خطای نرم‌افزارها:
+npx -y playwright install chromium
 
 # ۳. سرور Google Search Console (اتصال به سرچ کنسول گوگل)
 claude mcp add gsc -- npx -y @aminforou/mcp-gsc
@@ -292,9 +314,9 @@ claude mcp add github -- npx -y @modelcontextprotocol/server-github
 
 ### 📜 Slash Commands (`~/.agents/commands/` / دستورات اسلش)
 
-You can use these 9 commands in the chat of any of your agents:
+You can use these 10 commands in the chat of any of your agents:
 
-در محیط چت هر کدام از ایجنت‌های خود می‌توانید از این ۹ دستور استفاده کنید:
+در محیط چت هر کدام از ایجنت‌های خود می‌توانید از این ۱۰ دستور استفاده کنید:
 
 | Slash Command | Function / عملکرد |
 |:---|:---|
@@ -303,6 +325,7 @@ You can use these 9 commands in the chat of any of your agents:
 | `/CyrusAsha_Rules` | Scans all rules in `~/.agents/rules/`, audits current codebase, and refactors code for 100% architecture compliance. |
 | `/CyrusAsha_Agents` | Scans specialist personas in `~/.agents/agents/`, selects the best expert (e.g., database architect or frontend specialist), and delegates the task. |
 | `/CyrusAsha_Audit-Security` | Performs a full security audit on the repository, provides a status table, and creates/completes the 5 standard files. |
+| `/CyrusAsha_PreLaunch-Security` | Pre-launch production security audit synthesizing AI QA Monkey, Kalit AI, and Vibe-Eval 2026 guidelines (Database RLS, Secrets, Auth/IDOR, Rate limits, AI input boundaries, Security headers). |
 | `/CyrusAsha_Compact` | Runs `pre-compact.ps1` hook, summarizes session state, saves checkpoint to `~/.agents/session-state.md`, and frees context window. |
 | `/CyrusAsha_Compress` | Forces immediate compression of context, removes chat fluff and pleasantries, and enforces compact diff-only mode. |
 | `/CyrusAsha_Hooks` | Scans, checks status, and manually tests lifecycle scripts in `~/.agents/hooks/`. |
@@ -315,6 +338,7 @@ You can use these 9 commands in the chat of any of your agents:
 | **`/CyrusAsha_Rules`** | اسکن تمام قوانین موجود در `~/.agents/rules/`، ممیزی کدهای فعلی پروژه و ریفکتور کردن کدها برای انطباق ۱۰۰٪ با استانداردهای معماری. |
 | **`/CyrusAsha_Agents`** | اسکن شخصیت‌های تخصصی در `~/.agents/agents/`، انتخاب بهترین متخصص (مثلاً معمار دیتابیس یا متخصص فرانت‌اند) و واگذاری تسک به او. |
 | **`/CyrusAsha_Audit-Security`** | اجرای ممیزی کامل امنیتی روی پروژه، ارائه جدول وضعیت و ساخت/تکمیل ۵ فایل استاندارد (`SECURITY.md`, `AGENTS.md`, `.env.example`, `THREAT-MODEL.md`, `SECURITY-CHECKLIST.md`). |
+| **`/CyrusAsha_PreLaunch-Security`** | چک‌لیست و ممیزی امنیتی قبل از لانچ نهایی (تلفیق استاندارد‌های AI QA Monkey، Kalit AI و Vibe-Eval 2026 برای امنیت دیتابیس RLS، سکرت‌ها، اعتبارسنجی IDOR، ریت‌لیمیت و مرزهای هوش مصنوعی). |
 | **`/CyrusAsha_Compact`** | اجرای هوک `pre-compact.ps1`، خلاصه‌سازی وضعیت جلسه، ذخیره چک‌پوینت در `~/.agents/session-state.md` و آزادسازی حافظه چت (Context Window). |
 | **`/CyrusAsha_Compress`** | فشرده‌سازی فوری کانتکست چت، حذف احوال‌پرسی‌ها و زوائد متنی، و وادار کردن ایجنت به پاسخ‌های کاملاً تلگرافی، ساختاریافته و مبتنی بر diff. |
 | **`/CyrusAsha_Hooks`** | اسکن، بررسی وضعیت و تست دستی اسکریپت‌های چرخه حیات موجود در `~/.agents/hooks/`. |

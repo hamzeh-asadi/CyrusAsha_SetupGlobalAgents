@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+﻿#Requires -Version 5.1
 <#
 .SYNOPSIS
     Create or update AI-agent files in a project. Never deletes existing content.
