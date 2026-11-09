@@ -1,7 +1,7 @@
 # ==============================================================================
 # Global AI Agent Configurator for Windows
 # File: CyrusAsha_GlobalAgents.ps1
-# Version: 1.1.0 (Enterprise Multi-Agent & Resilience Edition)
+# Version: 1.2.0 (Enterprise Multi-Agent & Resilience Edition)
 # Central Directory: %USERPROFILE%\.agents
 #
 # Creator / سازنده:
@@ -27,7 +27,7 @@
 # ==============================================================================
 
 $ErrorActionPreference = "Continue"
-$script:Version = "1.1.0"
+$script:Version = "1.2.0"
 $script:StartMarker = "<!-- GLOBAL-AI-AGENTS:START -->"
 $script:EndMarker   = "<!-- GLOBAL-AI-AGENTS:END -->"
 
