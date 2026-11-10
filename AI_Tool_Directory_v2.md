@@ -64,6 +64,8 @@
 | **`diagram-design`** | Cathryn Lavery | [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design.git) | ساخت ۴۵ نوع دیاگرام فنی و بیزینسی درون یک فایل مجزای HTML+SVG با استایل مدرن. | رایگان و متن‌باز (MIT) |
 | **`awesome-claude-design`** | VoltAgent | [VoltAgent/awesome-claude-design](https://github.com/VoltAgent/awesome-claude-design.git) | سیستم‌های آماده دیزاین (`DESIGN.md`) برای خلق سریع اینترفیس‌های مدرن با یک پرامپت. | رایگان و متن‌باز (MIT) |
 | **`img2threejs`** | img2threejs | [img2threejs/img2threejs](https://github.com/img2threejs/img2threejs.git) | تبدیل تصاویر دوبعدی مرجع به مدل‌های سه‌بعدی و انیمیشن‌های تعاملی با Three.js به صورت سورس کد. | رایگان و متن‌باز (MIT) |
+| **`imagegen-skills` / `image-to-code`** *(جدید)* | Leonxlnx | [Leonxlnx/imagegen-skills](https://github.com/Leonxlnx/imagegen-skills.git) | اسکیل تخصصی Image-First فرانت‌اند و آرت دایرکشن وب؛ اجبار ایجنت به تولید رفرنس تصویری و تحلیل سلسله‌مراتب قبل از کدنویسی برای ممانعت از الگوهای کلیشه‌ای و درهم‌تنیدگی باکس‌ها. | رایگان و متن‌باز (MIT) |
+| **`extract-design-system`** *(جدید)* | Arvind RK | [arvindrk/extract-design-system](https://github.com/arvindrk/extract-design-system.git) | مهندسی معکوس و استخراج توکن‌های طراحی (رنگ، تایپوگرافی، فاصله‌گذاری، سایه‌ها، Border Radius) از سایت‌های زنده از طریق Playwright و تولید خروجی JSON و متغیرهای CSS. | رایگان و متن‌باز (MIT) |
 
 ---
 
@@ -113,6 +115,7 @@
 | **`skills-anthropic`** *(جدید)* | Anthropic | [anthropics/skills](https://github.com/anthropics/skills.git) | مخزن استاندارد باز اسکیل‌های ایجنتی شرکت Anthropic تحت بنیاد Agentic AI Foundation. | رایگان و متن‌باز (Apache 2.0) |
 | **`awesome-copilot`** *(جدید)* | GitHub | [github/awesome-copilot](https://github.com/github/awesome-copilot.git) | کاتالوگ جامع دستورالعمل‌ها، ایجنت‌ها، اسکیل‌ها و پیکربندی‌های رسمی برای GitHub Copilot. | رایگان و متن‌باز (MIT) |
 | **`obsidian-skills`** *(جدید)* | Steph Ango (Kepano) | [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills.git) | اسکیل‌های تعامل ایجنت‌ها با Obsidian CLI، ساخت والت، فرمت‌های Markdown، Bases و JSON Canvas. | رایگان و متن‌باز (MIT) |
+| **`vercel-agent-skills`** *(جدید)* | Vercel Labs | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills.git) | کالکشن رسمی اسکیل‌های ورسل شامل web-design-guidelines، الگوهای کامپوزیشن کامپوننت، پرفورمنس بهینه React 19 / Next.js، انیمیشن‌های React View Transitions و بهینه‌سازی هزینه‌ها. | رایگان و متن‌باز (MIT) |
 
 ---
 

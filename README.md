@@ -145,11 +145,11 @@ This means **every skill installed once in `.agents\skills\` is instantly availa
 
 ---
 
-## 📦 Integrated Repositories (45+ Open-Source Tools) / فهرست ۴۵+ مخزن ادغام‌شده
+## 📦 Integrated Repositories (48+ Open-Source Tools) / فهرست ۴۸+ مخزن ادغام‌شده
 
-The script automatically clones (or updates via `git pull` on subsequent runs) the following 45+ repositories and places their contents into the central `.agents` folder:
+The script automatically clones (or updates via `git pull` on subsequent runs) the following 48+ repositories and places their contents into the central `.agents` folder:
 
-این اسکریپت در هنگام اجرا، ۴۵+ مخزن زیر را به صورت خودکار کلون (یا در اجراهای بعدی `git pull` و آپدیت) کرده و محتوای آن‌ها را در پوشه مرکزی `.agents` جای‌گذاری می‌کند:
+این اسکریپت در هنگام اجرا، ۴۸+ مخزن زیر را به صورت خودکار کلون (یا در اجراهای بعدی `git pull` و آپدیت) کرده و محتوای آن‌ها را در پوشه مرکزی `.agents` جای‌گذاری می‌کند:
 
 ### 🧩 Frameworks, Harnesses & Multi-Agent Systems / فریم‌ورک‌ها، هارنس‌ها و سیستم‌های چند-ایجنتی
 
@@ -206,6 +206,8 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | `diagram-design` | [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design.git) | Professional architecture diagrams, flowcharts, and sequences in standalone HTML+SVG files. |
 | `awesome-claude-design` | [VoltAgent/awesome-claude-design](https://github.com/VoltAgent/awesome-claude-design.git) | Ready-made design systems (`DESIGN.md`) for generating modern user interfaces with a single prompt. |
 | `img2threejs` | [img2threejs/img2threejs](https://github.com/img2threejs/img2threejs.git) | Converts 2D reference images into interactive and animated 3D scenes and models with Three.js. |
+| `imagegen-skills` *(جدید)* | [Leonxlnx/imagegen-skills](https://github.com/Leonxlnx/imagegen-skills.git) | Elite image-first website design-to-code workflow (`image-to-code`, `brandkit`) eliminating repetitive AI UI slop and nested card anti-patterns. |
+| `extract-design-system` *(جدید)* | [arvindrk/extract-design-system](https://github.com/arvindrk/extract-design-system.git) | Reverse-engineers design tokens (colors, typography, spacing, radius, shadows) from public websites into JSON & CSS via Playwright. |
 
 ### 🧠 Memory & Context Management / حافظه بلندمدت و مدیریت کانتکست
 
@@ -236,6 +238,7 @@ The script automatically clones (or updates via `git pull` on subsequent runs) t
 | `skills-anthropic` *(جدید)* | [anthropics/skills](https://github.com/anthropics/skills.git) | Official public standard and foundational agent skills from Anthropic. |
 | `awesome-copilot` *(جدید)* | [github/awesome-copilot](https://github.com/github/awesome-copilot.git) | Community-driven official collection of custom instructions, skills, and agents for GitHub Copilot. |
 | `obsidian-skills` *(جدید)* | [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills.git) | Official agent skills by Steph Ango (Kepano) for Obsidian vaults, CLI, and JSON Canvas. |
+| `vercel-agent-skills` *(جدید)* | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills.git) | Official Vercel Labs collection: web design guidelines, React 19 composition patterns, React View Transitions, and Next.js optimization. |
 
 ### 💻 Terminal Coding Agents / ایجنت‌های خط فرمان
 

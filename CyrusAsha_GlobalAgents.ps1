@@ -673,6 +673,7 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
         @{ Name = "skills-anthropic";               Url = "https://github.com/anthropics/skills.git" },
         @{ Name = "awesome-copilot";                Url = "https://github.com/github/awesome-copilot.git" },
         @{ Name = "obsidian-skills";                Url = "https://github.com/kepano/obsidian-skills.git" },
+        @{ Name = "vercel-agent-skills";            Url = "https://github.com/vercel-labs/agent-skills.git" },
 
         # 7. Terminal Coding Agents (New)
         @{ Name = "free-pi-cli";                    Url = "https://github.com/dennisonbertram/free-pi-cli.git" },
@@ -686,7 +687,11 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
         # 10. Memory, Context & Official Ecosystem Extensions (New)
         @{ Name = "claude-mem";                     Url = "https://github.com/thedotmack/claude-mem.git" },
         @{ Name = "claude-plugins-official";        Url = "https://github.com/anthropics/claude-plugins-official.git" },
-        @{ Name = "skills-google";                  Url = "https://github.com/google/skills.git" }
+        @{ Name = "skills-google";                  Url = "https://github.com/google/skills.git" },
+
+        # 11. Design Systems, Image-to-Code & Frontend Extraction (New)
+        @{ Name = "imagegen-skills";                Url = "https://github.com/Leonxlnx/imagegen-skills.git" },
+        @{ Name = "extract-design-system";          Url = "https://github.com/arvindrk/extract-design-system.git" }
     )
     foreach ($Repo in $ReposList) {
         $TempRepoDir = Join-Path $env:TEMP $Repo.Name
